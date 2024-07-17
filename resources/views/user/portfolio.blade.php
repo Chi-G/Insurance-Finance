@@ -120,7 +120,7 @@
                                         </tr>
                                         @else
                                         <tr>
-                                            <td colspan="4">You have no active subscriptions.</td>
+                                            <td colspan="4">You have no active subscriptions, kindly choose a subscription plan above</td>
                                         </tr>
                                         @endif
                                     </tbody>

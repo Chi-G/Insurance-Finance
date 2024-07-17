@@ -80,17 +80,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-// Email Verification Routes
+// Display the email verification notice to the user.
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
+// Handle the email verification process.
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
     return redirect('/home');
-})->middleware(['auth', 'signed', 'throttle:6,1'])->name('verification.verify');
+})->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
+// Handle resending the email verification notification.
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
