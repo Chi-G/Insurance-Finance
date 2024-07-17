@@ -86,11 +86,11 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 // Handle the email verification process.
-// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-//     $request->fulfill();
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
 
-//     return redirect('/user/dashboard');
-// })->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
+    return redirect('/user/dashboard');
+})->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
 // Handle resending the email verification notification.
 Route::post('/email/verification-notification', function (Request $request) {
