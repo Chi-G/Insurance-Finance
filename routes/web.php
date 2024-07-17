@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\AdminSubscriptionController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -49,10 +50,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('user.dashboard');
     })->name('user.dashboard');
 
+    // User Dashboard Route
+    Route::get('/user/dashboard', [DashboardController::class, 'dashboard'])->name('user.dashboard');
+
     // User Portfolio Routes
     Route::get('/user/portfolio', [\App\Http\Controllers\SubscriptionController::class, 'index'])->name('user.portfolio');
     Route::post('/user/portfolio', [\App\Http\Controllers\SubscriptionController::class, 'store'])->name('user.portfolio.store');
     Route::get('/user/portfolio/show', [\App\Http\Controllers\SubscriptionController::class, 'show'])->name('user.portfolio.show');
+
+    Route::get('/subscription/summary', [SubscriptionController::class, 'summary'])->name('subscription.summary');
+    Route::get('/subscription/transfer', [SubscriptionController::class, 'transfer'])->name('subscription.transfer');
+
 
     // Profile Routes
     Route::prefix('profile')->group(function () {

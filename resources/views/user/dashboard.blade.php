@@ -8,6 +8,35 @@
     @include('user.include.css')
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-xl-8, .col-xl-4 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .widget {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .widget-content {
+            flex: 1;
+        }
+
+        .widget-chart-one, .widget-account-invoice-one {
+            height: 100%;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+
 </head>
 <body>
     <!-- BEGIN LOADER -->
@@ -34,159 +63,75 @@
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
                 <div class="row layout-top-spacing">
-
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                        <div class="widget widget-table-two">
-
+                    <!-- Revenue Widget -->
+                    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-chart-one">
                             <div class="widget-heading">
-                                <h5 class="">Recent Orders</h5>
+                                <h5 class="">Revenue</h5>
+                                <ul class="tabs tab-pills">
+                                    <li><a href="javascript:void(0);" id="tb_1" class="tabmenu">Monthly</a></li>
+                                </ul>
                             </div>
 
                             <div class="widget-content">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th><div class="th-content">Customer</div></th>
-                                                <th><div class="th-content">Product</div></th>
-                                                <th><div class="th-content">Invoice</div></th>
-                                                <th><div class="th-content th-heading">Price</div></th>
-                                                <th><div class="th-content">Status</div></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><div class="td-content customer-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="avatar">Andy King</div></td>
-                                                <td><div class="td-content product-brand">Nike Sport</div></td>
-                                                <td><div class="td-content">#76894</div></td>
-                                                <td><div class="td-content pricing"><span class="">$88.00</span></div></td>
-                                                <td><div class="td-content"><span class="badge outline-badge-primary">Shipped</span></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content customer-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="avatar">Irene Collins</div></td>
-                                                <td><div class="td-content product-brand">Speakers</div></td>
-                                                <td><div class="td-content">#75844</div></td>
-                                                <td><div class="td-content pricing"><span class="">$84.00</span></div></td>
-                                                <td><div class="td-content"><span class="badge outline-badge-success">Paid</span></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content customer-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="avatar">Laurie Fox</div></td>
-                                                <td><div class="td-content product-brand">Camera</div></td>
-                                                <td><div class="td-content">#66894</div></td>
-                                                <td><div class="td-content pricing"><span class="">$126.04</span></div></td>
-                                                <td><div class="td-content"><span class="badge outline-badge-danger">Pending</span></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content customer-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="avatar">Luke Ivory</div></td>
-                                                <td><div class="td-content product-brand">Headphone</div></td>
-                                                <td><div class="td-content">#46894</div></td>
-                                                <td><div class="td-content pricing"><span class="">$56.07</span></div></td>
-                                                <td><div class="td-content"><span class="badge outline-badge-success">Paid</span></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content customer-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="avatar">Ryan Collins</div></td>
-                                                <td><div class="td-content product-brand">Sport</div></td>
-                                                <td><div class="td-content">#89891</div></td>
-                                                <td><div class="td-content pricing"><span class="">$108.09</span></div></td>
-                                                <td><div class="td-content"><span class="badge outline-badge-primary">Shipped</span></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content customer-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="avatar">Nia Hillyer</div></td>
-                                                <td><div class="td-content product-brand">Sunglasses</div></td>
-                                                <td><div class="td-content">#26974</div></td>
-                                                <td><div class="td-content pricing"><span class="">$168.09</span></div></td>
-                                                <td><div class="td-content"><span class="badge outline-badge-primary">Shipped</span></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content customer-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="avatar">Sonia Shaw</div></td>
-                                                <td><div class="td-content product-brand">Watch</div></td>
-                                                <td><div class="td-content">#76844</div></td>
-                                                <td><div class="td-content pricing"><span class="">$110.00</span></div></td>
-                                                <td><div class="td-content"><span class="badge outline-badge-success">Paid</span></div></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="tabs tab-content">
+                                    <div id="content_1" class="tabcontent">
+                                        <div id="revenueMonthly">
+                                            <!-- Include a chart or revenue details here -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                        <div class="widget widget-table-three">
-
+                    <!-- Account Info Widget -->
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-account-invoice-one">
                             <div class="widget-heading">
-                                <h5 class="">Top Selling Product</h5>
+                                <h5 class="">Account Info</h5>
                             </div>
 
                             <div class="widget-content">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th><div class="th-content">Product</div></th>
-                                                <th><div class="th-content th-heading">Price</div></th>
-                                                <th><div class="th-content th-heading">Discount</div></th>
-                                                <th><div class="th-content">Sold</div></th>
-                                                <th><div class="th-content">Source</div></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><div class="td-content product-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="product">Speakers</div></td>
-                                                <td><div class="td-content"><span class="pricing">$84.00</span></div></td>
-                                                <td><div class="td-content"><span class="discount-pricing">$10.00</span></div></td>
-                                                <td><div class="td-content">240</div></td>
-                                                <td><div class="td-content"><a href="javascript:void(0);" class="">Direct</a></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content product-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="product">Sunglasses</div></td>
-                                                <td><div class="td-content"><span class="pricing">$56.07</span></div></td>
-                                                <td><div class="td-content"><span class="discount-pricing">$5.07</span></div></td>
-                                                <td><div class="td-content">190</div></td>
-                                                <td><div class="td-content"><a href="javascript:void(0);" class="">Google</a></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content product-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="product">Watch</div></td>
-                                                <td><div class="td-content"><span class="pricing">$88.00</span></div></td>
-                                                <td><div class="td-content"><span class="discount-pricing">$20.00</span></div></td>
-                                                <td><div class="td-content">66</div></td>
-                                                <td><div class="td-content"><a href="javascript:void(0);" class="">Ads</a></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content product-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="product">Laptop</div></td>
-                                                <td><div class="td-content"><span class="pricing">$110.00</span></div></td>
-                                                <td><div class="td-content"><span class="discount-pricing">$33.00</span></div></td>
-                                                <td><div class="td-content">35</div></td>
-                                                <td><div class="td-content"><a href="javascript:void(0);" class="">Email</a></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content product-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="product">Camera</div></td>
-                                                <td><div class="td-content"><span class="pricing">$126.04</span></div></td>
-                                                <td><div class="td-content"><span class="discount-pricing">$26.04</span></div></td>
-                                                <td><div class="td-content">30</div></td>
-                                                <td><div class="td-content"><a href="javascript:void(0);" class="">Referral</a></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content product-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="product">Shoes</div></td>
-                                                <td><div class="td-content"><span class="pricing">$108.09</span></div></td>
-                                                <td><div class="td-content"><span class="discount-pricing">$47.09</span></div></td>
-                                                <td><div class="td-content">130</div></td>
-                                                <td><div class="td-content"><a href="javascript:void(0);" class="">Google</a></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td><div class="td-content product-name"><img src="{{asset('backend/assets/img/90x90.jpg')}}" alt="product">Headphone</div></td>
-                                                <td><div class="td-content"><span class="pricing">$168.09</span></div></td>
-                                                <td><div class="td-content"><span class="discount-pricing">$60.09</span></div></td>
-                                                <td><div class="td-content">170</div></td>
-                                                <td><div class="td-content"><a href="javascript:void(0);" class="">Ads</a></div></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="invoice-box">
+                                    <div class="acc-total-info">
+                                        <h5>Balance</h5>
+                                        <p class="acc-amount">{{ number_format($user->balance, 2) }}</p>
+                                    </div>
+
+                                    <div class="inv-detail">
+                                        <div class="info-detail-1">
+                                            <p>Subscription Plan</p>
+                                            <p>{{ $user->subscription->plan }}</p>
+                                        </div>
+                                        <div class="info-detail-2">
+                                            <p>Subscription Status</p>
+                                            <p>{{ $user->subscription->status }}</p>
+                                        </div>
+                                        <div class="info-detail-3">
+                                            <div class="info-detail">
+                                                <p>Min Amount</p>
+                                                <p>{{ number_format($user->subscription->min_amount, 2) }}</p>
+                                            </div>
+                                            <div class="info-detail">
+                                                <p>Max Amount</p>
+                                                <p>{{ number_format($user->subscription->max_amount, 2) }}</p>
+                                            </div>
+                                            <div class="info-detail">
+                                                <p>Average Monthly</p>
+                                                <p>{{ number_format($user->subscription->average_monthly, 2) }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inv-action">
+                                        <a href="{{ route('subscription.summary') }}" class="btn btn-outline-dark">Summary</a>
+                                        <a href="{{ route('subscription.transfer') }}" class="btn btn-danger">Transfer</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 

@@ -61,4 +61,12 @@ class SubscriptionController extends Controller
 
         return view('user.portfolio', compact('user', 'subscription'));
     }
+
+    public function dashboard()
+    {
+        $user = Auth::user();
+        $subscription = $user->subscription; // Assuming there's a relationship set up
+
+        return view('user.portfolio', compact('user', 'subscription'));
+    }
 }
