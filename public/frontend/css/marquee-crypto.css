@@ -1,0 +1,31 @@
+.crypto-marquee {
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+    padding: 10px 0; /* Optional: Add some padding */
+}
+
+.crypto-prices {
+    display: flex;
+    align-items: center;
+    animation: marquee 15s linear infinite;
+    margin: 0;
+    padding: 0;
+}
+
+.crypto-prices li {
+    display: inline-block;
+    margin-right: 20px;
+    list-style: none;
+    color: #E6922E;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
