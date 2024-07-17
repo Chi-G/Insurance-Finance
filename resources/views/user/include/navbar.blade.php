@@ -23,7 +23,13 @@
         </ul>
         <ul class="navbar-item flex-row navbar-dropdown">
             <li class="nav-item dropdown language-dropdown more-dropdown">
-                <div class="  custom-dropdown-icon">
+                <div class="custom-dropdown-icon">
+                    <a class="dropdown-toggle btn" href="#" role="button" id="customDropdown" data-toggle="" aria-haspopup="true" aria-expanded="false"><img src="{{asset('backend/assets/img/ca.png')}}" class="flag-width" alt="flag"><span>English</span></a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown language-dropdown more-dropdown">
+                <div class="custom-dropdown-icon">
                     <a class="dropdown-toggle btn" href="#" role="button" id="customDropdown" data-toggle="" aria-haspopup="true" aria-expanded="false"><img src="{{asset('backend/assets/img/ca.png')}}" class="flag-width" alt="flag"><span>English</span></a>
                 </div>
             </li>

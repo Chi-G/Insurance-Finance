@@ -33,15 +33,25 @@ class SubscriptionController extends Controller
             'plan' => 'required|string|in:PRIME PROFIT ELITE,PRESTIGE ELITE,IMPERIAL INCOME ELITE,TERRA ELITE,PRESTIGE PORTFOLIO ELITE,NEXUS ELITE,ECHELON EQUITY ELITE,ZENITH YIELD ELITE',
         ]);
 
+        dd($request);
+
         $user = Auth::user();
+        $plan = $request->input('plan');
 
-        // Create a new subscription
-        Subscription::updateOrCreate(
-            ['user_id' => $user->id],
-            ['plan' => $request->plan, 'status' => 'pending'] // Default to pending until admin updates
-        );
+            // Create or update the subscription with a default status of 'pending'
+            try {
+                $subscription = Subscription::updateOrCreate(
+                    ['user_id' => $user->id],
+                    ['plan' => $request->plan, 'status' => 'pending']
+                );
 
-        return redirect()->route('user.portfolio')->with('success', 'Your subscription request is pending.');
+                return redirect()->route('user.portfolio')->with('success', 'Your subscription request is pending.');
+
+            } catch (\Exception $e) {
+                // Log the error or display an error message
+                \Log::error('Failed to update or create subscription: ' . $e->getMessage());
+                return redirect()->route('user.portfolio.index')->with('error', 'Failed to select subscription plan.');
+            }
     }
 
     public function show()

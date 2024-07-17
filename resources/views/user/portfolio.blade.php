@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Tether Elite Finance - Admin Dashboard</title>
+    <title>Tether Elite Finance - User Portfolio</title>
     @include('user.include.css')
 
     <style>
@@ -15,13 +15,16 @@
     </style>
 
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-
 </head>
 <body>
     <!-- BEGIN LOADER -->
-    <div id="load_screen"> <div class="loader"> <div class="loader-content">
-        <div class="spinner-grow align-self-center"></div>
-    </div></div></div>
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
@@ -30,7 +33,6 @@
 
     <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container" id="container">
-
         <div class="overlay"></div>
         <div class="search-overlay"></div>
 
@@ -42,7 +44,7 @@
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
                 <div class="row layout-top-spacing" id="cancel-row">
-                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                    <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
                         <div class="widget-content widget-content-area br-6">
 
                             <h3>{{ $user->name }}, welcome. Select a subscription plan</h3>
@@ -59,6 +61,7 @@
                                     <div class="form-group">
                                         <label for="plan">Choose a Plan</label>
                                         <select id="plan" name="plan" class="form-control">
+                                            <option value="" disabled selected>Select Subscription Plan</option>
                                             @foreach($plans as $plan)
                                                 <option value="{{ $plan }}">{{ $plan }}</option>
                                             @endforeach
@@ -141,8 +144,6 @@
             </div>
         </div>
         <!--  END CONTENT AREA  -->
-
-
     </div>
     <!-- END MAIN CONTAINER -->
 
