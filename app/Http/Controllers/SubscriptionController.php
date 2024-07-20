@@ -23,12 +23,12 @@ class SubscriptionController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'plan_id' => 'required|exists:plans,id',
-        // ]);
+        $request->validate([
+            'plan' => 'required|exists:plans,id',
+        ]);
 
         $user = Auth::user();
-        $plan = Plan::findOrFail($request->input('plan_id'));
+        $plan = Plan::findOrFail($request->input('plan'));
 
         try {
             // Create or update the subscription with a default status of 'pending'
