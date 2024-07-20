@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Models\Transaction;
+use App\Models\Plan;
 use App\Models\User;
 
 
@@ -12,21 +14,26 @@ class AdminSubscriptionController extends Controller
 {
     public function index()
     {
-        $subscriptions = Subscription::with('user')->get();
-
-        return view('admin.portfolio.portfolio_index', compact('subscriptions'));
+        $users = User::with('subscription')->get();
+        return view('admin.portfolio.portfolio_index', compact('users'));
     }
 
     public function edit(Subscription $subscription)
     {
         $users = User::all();
-        return view('admin.portfolio.porfolio_edit', compact('subscription', 'users'));
+        $plans = Plan::all();
+        return view('admin.portfolio.portfolio_edit', compact('subscription', 'users', 'plans'));
     }
 
     public function update(Request $request, Subscription $subscription)
     {
+        $request->validate([
+            'plan_id' => 'required|exists:plans,id',
+            'status' => 'required|string|in:not-subscribed,pending,processing,active-subscription',
+        ]);
+
         $subscription->update([
-            'plan' => $request->plan,
+            'plan_id' => $request->plan_id,
             'status' => $request->status,
         ]);
 

@@ -38,41 +38,54 @@
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
 
-                            <h1>{{ isset($subscription) ? 'Edit User Subscripion' : 'All User Subscription' }}</h1>
+                            <h1>{{ isset($subscription) ? 'Edit User Subscription' : 'Create New Subscription' }}</h1>
 
-                            <a href="{{ route('admin.subscriptions') }}" class="btn btn-primary">All User Portfolio</a>
+                            <a href="{{ route('admin.subscriptions') }}" class="btn btn-primary mb-3">All User Subscriptions</a>
 
                             <div class="table-responsive mb-4 mt-4">
-                                <form action="{{ route('admin.subscriptions.update', $subscription->id) }}" method="POST">
+                                <form action="{{ isset($subscription) ? route('admin.subscriptions.update', $subscription->id) : route('admin.subscriptions.store') }}" method="POST">
                                     @csrf
-                                    @method('PATCH')
+                                    @if(isset($subscription))
+                                        @method('PATCH')
+                                    @endif
+
                                     <div class="form-group">
                                         <label for="user_id">User</label>
                                         <input type="text" class="form-control" id="user_id" value="{{ $subscription->user->name }}" disabled>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="plan">Plan</label>
-                                        <input type="text" class="form-control" id="plan" name="plan" value="{{ old('plan', $subscription->plan) }}" required>
-                                        @error('plan')
+                                        <select id="plan" name="plan_id" class="form-control" required>
+                                            @foreach($plans as $plan)
+                                                <option value="{{ $plan->id }}" {{ (isset($subscription) && $subscription->plan_id == $plan->id) ? 'selected' : '' }}>
+                                                    {{ $plan->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('plan_id')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="form-group">
                                         <label for="status">Status</label>
                                         <select id="status" name="status" class="form-control" required>
-                                            <option value="not-subscribed" {{ $subscription->status == 'not-subscribed' ? 'selected' : '' }}>Not Subscribed</option>
-                                            <option value="pending" {{ $subscription->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                            <option value="processing" {{ $subscription->status == 'processing' ? 'selected' : '' }}>Processing</option>
-                                            <option value="active-subscription" {{ $subscription->status == 'active-subscription' ? 'selected' : '' }}>Active Subscription</option>
+                                            <option value="not-subscribed" {{ (isset($subscription) && $subscription->status == 'not-subscribed') ? 'selected' : '' }}>Not Subscribed</option>
+                                            <option value="pending" {{ (isset($subscription) && $subscription->status == 'pending') ? 'selected' : '' }}>Pending</option>
+                                            <option value="processing" {{ (isset($subscription) && $subscription->status == 'processing') ? 'selected' : '' }}>Processing</option>
+                                            <option value="active-subscription" {{ (isset($subscription) && $subscription->status == 'active-subscription') ? 'selected' : '' }}>Active Subscription</option>
                                         </select>
                                         @error('status')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Update Subscription</button>
+
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ isset($subscription) ? 'Update Subscription' : 'Create Subscription' }}
+                                    </button>
                                 </form>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -63,27 +63,6 @@
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
                 <div class="row layout-top-spacing">
-                    <!-- Revenue Widget -->
-                    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                        <div class="widget widget-chart-one">
-                            <div class="widget-heading">
-                                <h5 class="">Revenue</h5>
-                                <ul class="tabs tab-pills">
-                                    <li><a href="javascript:void(0);" id="tb_1" class="tabmenu">Monthly</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="widget-content">
-                                <div class="tabs tab-content">
-                                    <div id="content_1" class="tabcontent">
-                                        <div id="revenueMonthly">
-                                            <!-- Include a chart or revenue details here -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Account Info Widget -->
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
@@ -96,43 +75,174 @@
                                 <div class="invoice-box">
                                     <div class="acc-total-info">
                                         <h5>Balance</h5>
-                                        <p class="acc-amount">{{ number_format($user->balance, 2) }}</p>
+                                        @if ($user->subscription && $user->subscription->transactions->isNotEmpty())
+                                            <p class="acc-amount"> ${{ number_format($user->subscription->transactions->first()->profit_per_month ?? 0, 2) }} </p>
+                                        @else
+                                            <p class="acc-amount">N/A</p>
+                                        @endif
                                     </div>
+
+                                    <hr>
 
                                     <div class="inv-detail">
-                                        <div class="info-detail-1">
-                                            <p>Subscription Plan</p>
-                                            <p>{{ $user->subscription->plan }}</p>
-                                        </div>
-                                        <div class="info-detail-2">
-                                            <p>Subscription Status</p>
-                                            <p>{{ $user->subscription->status }}</p>
-                                        </div>
-                                        <div class="info-detail-3">
-                                            <div class="info-detail">
-                                                <p>Min Amount</p>
-                                                <p>{{ number_format($user->subscription->min_amount, 2) }}</p>
+                                        @if ($user->subscription)
+                                            <div class="info-detail-1">
+                                                <p>Subscription Plan</p>
+                                                <p class="acc-amount">{{ $user->subscription->plan->name }}</p>
                                             </div>
-                                            <div class="info-detail">
-                                                <p>Max Amount</p>
-                                                <p>{{ number_format($user->subscription->max_amount, 2) }}</p>
+                                            <div class="info-detail-2">
+                                                <p>Subscription Status</p>
+                                                <p class="acc-amount">{{ ucfirst($user->subscription->status) }}</p>
                                             </div>
-                                            <div class="info-detail">
-                                                <p>Average Monthly</p>
-                                                <p>{{ number_format($user->subscription->average_monthly, 2) }}</p>
+                                            <div class="info-detail-3">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Details</th>
+                                                            <th scope="col">Amount</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Min Investment</td>
+                                                            <td>${{ number_format($user->subscription->plan->min_investment, 2) }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Max Investment</td>
+                                                            <td>${{ number_format($user->subscription->plan->max_investment, 2) }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Average Monthly Profit</td>
+                                                            <td>${{ number_format($user->subscription->plan->average_monthly, 2) }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Daily Profit</td>
+                                                            <td>{{ $user->subscription->plan->daily_profit }}%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                        </div>
+                                        @else
+                                            <p>No subscription details available.</p>
+                                        @endif
                                     </div>
 
-                                    <div class="inv-action">
-                                        <a href="{{ route('subscription.summary') }}" class="btn btn-outline-dark">Summary</a>
-                                        <a href="{{ route('subscription.transfer') }}" class="btn btn-danger">Transfer</a>
-                                    </div>
+                                    {{-- <div class="inv-action">
+                                        <a href="#" class="btn btn-outline-dark">Summary</a>
+                                        <a href="#" class="btn btn-danger">Transfer</a>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <!-- Transactions Widget -->
+                    <div class="col-xl-5 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-table-one">
+                            <div class="widget-heading">
+                                <h5 class="">Transactions</h5>
+                            </div>
+
+                            <div class="widget-content">
+                                @if($transactions->isEmpty())
+                                    <p class="acc-amount">N/A</p>
+                                    <p>No transactions found.</p>
+                                @else
+                                    @foreach($transactions as $transaction)
+                                        <div class="transactions-list">
+                                            <div class="t-item">
+                                                <div class="t-company-name">
+                                                    <div class="t-icon">
+                                                        <div class="avatar avatar-xl">
+                                                            <span class="avatar-title rounded-circle">{{ $transaction->user->initials }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="t-name">
+                                                        <h4>{{ $transaction->user->name }}</h4>
+                                                        <p class="meta-date">{{ $transaction->created_at->format('d M Y h:i A') }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="t-rate rate-inc">
+                                                    <p>
+                                                        <span>${{ number_format($transaction->amount, 2) }}</span>
+                                                        <span>({{ $transaction->percentage_rate }}%)</span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+                                                            <line x1="12" y1="19" x2="12" y2="5"></line>
+                                                            <polyline points="5 12 12 5 19 12"></polyline>
+                                                        </svg>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-activity-four">
+                            <div class="widget-heading">
+                                <h5 class="">Recent Activities</h5>
+                            </div>
+                            <div class="widget-content">
+                                <div class="mt-container mx-auto ps ps--active-y">
+                                    <div class="timeline-line">
+                                        @if($transactions->isEmpty())
+                                            <p>No transactions found.</p>
+                                        @else
+                                            @foreach($transactions as $transaction)
+                                                <div class="item-timeline
+                                                    @if($transaction->profit_per_month > 0)
+                                                        timeline-success
+                                                    @elseif($transaction->profit_per_month == 0)
+                                                        timeline-warning
+                                                    @else
+                                                        timeline-danger
+                                                    @endif">
+                                                    <div class="t-dot" data-original-title="" title=""></div>
+                                                    <div class="t-text">
+                                                        <p>
+                                                            <span>{{ $transaction->subscription_plan }}</span>
+                                                            <br>
+                                                            Amount: ${{ number_format($transaction->amount, 2) }}
+                                                            <br>
+                                                            Profit Per Month: ${{ number_format($transaction->profit_per_month, 2) }}
+                                                        </p>
+                                                        <span class="badge
+                                                            @if($transaction->profit_per_month > 0)
+                                                                badge-success
+                                                            @elseif($transaction->profit_per_month == 0)
+                                                                badge-warning
+                                                            @else
+                                                                badge-danger
+                                                            @endif">
+                                                            {{ $transaction->profit_per_month > 0 ? 'Profit' : ($transaction->profit_per_month == 0 ? 'No Profit' : 'Loss') }}
+                                                        </span>
+                                                        <p class="t-time">{{ $transaction->created_at->format('d M Y h:i A') }}</p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                    </div>
+                                    <div class="ps__rail-y" style="top: 0px; height: 272px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 168px;"></div>
+                                    </div>
+                                </div>
+                                <div class="tm-action-btn">
+                                    <button class="btn">View All
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
 
             <div class="footer-wrapper">

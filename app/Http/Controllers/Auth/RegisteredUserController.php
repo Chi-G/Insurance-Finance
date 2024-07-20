@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Subscription;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -37,6 +38,15 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ]);
+
+        // Assuming you want to assign the user to the first plan as default
+        $defaultPlan = Plan::first();
+
+        Subscription::create([
+            'user_id' => $user->id,
+            'plan_id' => $defaultPlan->id,
+            'status' => 'not-subscribed',
         ]);
 
         // Dispatch the Registered event to send the verification email

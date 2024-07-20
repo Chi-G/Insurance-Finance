@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Withdrawal;
+use App\Models\Deposit;
 
 use Faker\Generator as Faker;
 
@@ -15,17 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
         // Seed the withdrawals table with 1000 records
         Withdrawal::factory(1000)->create();
         $this->call(TeamSeeder::class);
         $this->call(InvestmentSeeder::class);
         $this->call(SubscriptionSeeder::class);
+        $this->call(PlanSeeder::class);
     }
 }

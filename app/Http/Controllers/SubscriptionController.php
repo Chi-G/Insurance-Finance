@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subscription;
+use App\Models\Plan;
+use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,62 +13,52 @@ class SubscriptionController extends Controller
 {
     public function index()
     {
-        $plans = [
-            'PRIME PROFIT ELITE | Min Investment $1000 | Max Investment $5000 | Average Monthly 50%',
-            'PRESTIGE ELITE | Min Investment $2000 | Max Investment $15000 | Average Monthly 100%',
-            'IMPERIAL INCOME ELITE | Min Investment $3000 | Max Investment $20000 | Average Monthly 200%',
-            'TERRA ELITE | Min Investment $4000 | Max Investment $25000 | Average Monthly 250%',
-            'PRESTIGE PORTFOLIO ELITE | Min Investment $5000 | Max Investment $30000 | Average Monthly 300%',
-            'NEXUS ELITE | Min Investment $6000 | Max Investment $35000 | Average Monthly 325%',
-            'ECHELON EQUITY ELITE | Min Investment $7000 | Max Investment Plan $40000 | Average Monthly 350%',
-            'ZENITH YIELD ELITE | Min Investment $10000 | Max Investment $50000 | Average Monthly 400%',
-        ]; // Define your subscription plans
-
+        $plans = Plan::all();
         $user = Auth::user();
         $subscription = Subscription::where('user_id', $user->id)->first();
+        $transactions = Transaction::where('user_id', $user->id)->get();
 
-        return view('user.portfolio', compact('plans', 'user', 'subscription'));
+        return view('user.portfolio', compact('plans', 'user', 'subscription', 'transactions'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'plan' => 'required|string|in:PRIME PROFIT ELITE,PRESTIGE ELITE,IMPERIAL INCOME ELITE,TERRA ELITE,PRESTIGE PORTFOLIO ELITE,NEXUS ELITE,ECHELON EQUITY ELITE,ZENITH YIELD ELITE',
-        ]);
-
-        dd($request);
+        // $request->validate([
+        //     'plan_id' => 'required|exists:plans,id',
+        // ]);
 
         $user = Auth::user();
-        $plan = $request->input('plan');
+        $plan = Plan::findOrFail($request->input('plan_id'));
 
+        try {
             // Create or update the subscription with a default status of 'pending'
-            try {
-                $subscription = Subscription::updateOrCreate(
-                    ['user_id' => $user->id],
-                    ['plan' => $request->plan, 'status' => 'pending']
-                );
+            $subscription = Subscription::updateOrCreate(
+                ['user_id' => $user->id],
+                ['plan_id' => $plan->id, 'status' => 'pending']
+            );
 
-                return redirect()->route('user.portfolio')->with('success', 'Your subscription request is pending.');
+            // Create a transaction record
+            $transaction = Transaction::create([
+                'subscription_id' => $subscription->id,
+                'user_id' => $user->id,
+                'plan_id' => $plan->id,
+                'amount' => $plan->min_investment, // Assuming you have min_investment in plans table
+                'percentage_rate' => $plan->average_monthly,
+                'profit_per_month' => ($plan->min_investment * $plan->average_monthly) / 100,
+            ]);
 
-            } catch (\Exception $e) {
-                // Log the error or display an error message
-                \Log::error('Failed to update or create subscription: ' . $e->getMessage());
-                return redirect()->route('user.portfolio.index')->with('error', 'Failed to select subscription plan.');
-            }
+            return redirect()->route('user.portfolio')->with('success', 'Your subscription request is pending.');
+        } catch (\Exception $e) {
+            // Log the error or display an error message
+            \Log::error('Failed to update or create subscription: ' . $e->getMessage());
+            return redirect()->route('user.portfolio')->with('error', 'Failed to select subscription plan.');
+        }
     }
 
     public function show()
     {
         $user = Auth::user();
         $subscription = Subscription::where('user_id', $user->id)->first();
-
-        return view('user.portfolio', compact('user', 'subscription'));
-    }
-
-    public function dashboard()
-    {
-        $user = Auth::user();
-        $subscription = $user->subscription; // Assuming there's a relationship set up
 
         return view('user.portfolio', compact('user', 'subscription'));
     }

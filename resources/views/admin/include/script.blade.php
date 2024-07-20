@@ -29,8 +29,8 @@
             "sLengthMenu": "Results :  _MENU_",
          },
          "stripeClasses": [],
-         "lengthMenu": [4, 10, 20, 50],
-         "pageLength": 4
+         "lengthMenu": [7, 10, 20, 50],
+         "pageLength": 7
      });
  </script>
 

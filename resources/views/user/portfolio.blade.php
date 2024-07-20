@@ -9,8 +9,10 @@
 
     <style>
         .progress-status {
+            font-size: 10px;
             font-weight: bold;
             color: black;
+            margin-left: 10px;
         }
     </style>
 
@@ -49,21 +51,22 @@
 
                             <h3>{{ $user->name }}, welcome. Select a subscription plan</h3>
                             <div class="table-responsive mb-4 mt-4">
-
+                                <!-- Success Message -->
                                 @if(session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
                                     </div>
                                 @endif
 
+                                <!-- Subscription Form -->
                                 <form action="{{ route('user.portfolio.store') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <label for="plan">Choose a Plan</label>
-                                        <select id="plan" name="plan" class="form-control">
+                                        <select id="plan" name="plan" class="form-control" required>
                                             <option value="" disabled selected>Select Subscription Plan</option>
                                             @foreach($plans as $plan)
-                                                <option value="{{ $plan }}">{{ $plan }}</option>
+                                                <option value="{{ $plan->id }}">{{ $plan->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -72,6 +75,7 @@
 
                                 <hr>
 
+                                <!-- Subscription Progress -->
                                 <h6>Subscription Progress</h6>
                                 <table id="zero-config" class="table table-bordered table-hover dataTable table-condensed mb-4">
                                     <thead>
@@ -86,7 +90,7 @@
                                         @if($subscription)
                                         <tr>
                                             <td>{{ $subscription->user->name }}</td>
-                                            <td>{{ $subscription->plan }}</td>
+                                            <td>{{ optional($subscription->plan)->name }}</td>
                                             <td>
                                                 <div class="progress br-30" style="position: relative;">
                                                     <div class="progress-bar br-30
@@ -123,12 +127,13 @@
                                         </tr>
                                         @else
                                         <tr>
-                                            <td colspan="4">You have no active subscriptions, kindly choose a subscription plan above</td>
+                                            <td colspan="4">You have no active subscriptions. Kindly choose a subscription plan above.</td>
                                         </tr>
                                         @endif
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
                     </div>
                 </div>

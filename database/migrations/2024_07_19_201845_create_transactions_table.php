@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subscriptions', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('subscription_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('plan')->default('N/A');
-            $table->enum('status', ['not-subscribed', 'pending', 'processing', 'active-subscription'])->default('not-subscribed');
+            $table->foreignId('plan_id')->constrained()->onDelete('cascade');
+            $table->decimal('amount', 15, 2);
+            $table->decimal('percentage_rate', 5, 2);
+            $table->decimal('profit_per_month', 15, 2);
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subscriptions');
+        Schema::dropIfExists('transactions');
     }
 };

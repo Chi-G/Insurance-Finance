@@ -49,58 +49,73 @@
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
 
-                            <h3>{{ isset($subscription) ? 'Edit User Subscripion' : 'All User Subscription' }}</h3>
+                            <h3>{{ isset($subscription) ? 'Edit User Subscription' : 'All User Subscriptions' }}</h3>
 
                             <div class="table-responsive mb-4 mt-4">
                                 <table id="zero-config" class="table table-bordered table-hover dataTable table-condensed mb-4">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
+                                            <th>Email</th>
                                             <th>Active Plan</th>
                                             <th>Status</th>
-                                            <th>Date</th>
+                                            <th>Subscribed Date</th>
+                                            <th>Verified Users</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($subscriptions as $subscription)
+                                        @foreach($users as $user)
                                         <tr>
-                                            <td>{{ $subscription->user->name }}</td>
-                                            <td>{{ $subscription->plan }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->subscription ? $user->subscription->plan->name : 'N/A' }}</td>
                                             <td>
-                                                <div class="progress br-30">
-                                                    <div class="progress-bar br-30
-                                                        @if($subscription->status == 'not-subscribed') bg-danger
-                                                        @elseif($subscription->status == 'pending') bg-warning
-                                                        @elseif($subscription->status == 'processing') bg-info
-                                                        @elseif($subscription->status == 'active-subscription') bg-success
-                                                        @endif"
-                                                        role="progressbar"
-                                                        style="width:
-                                                            @if($subscription->status == 'not-subscribed') 0%
-                                                            @elseif($subscription->status == 'pending') 25%
-                                                            @elseif($subscription->status == 'processing') 50%
-                                                            @elseif($subscription->status == 'active-subscription') 100%
+                                                @if($user->subscription)
+                                                    <div class="progress br-30">
+                                                        <div class="progress-bar br-30
+                                                            @if($user->subscription->status == 'not-subscribed') bg-danger
+                                                            @elseif($user->subscription->status == 'pending') bg-warning
+                                                            @elseif($user->subscription->status == 'processing') bg-info
+                                                            @elseif($user->subscription->status == 'active-subscription') bg-success
                                                             @endif"
-                                                        aria-valuenow="
-                                                            @if($subscription->status == 'not-subscribed') 0
-                                                            @elseif($subscription->status == 'pending') 25
-                                                            @elseif($subscription->status == 'processing') 50
-                                                            @elseif($subscription->status == 'active-subscription') 100
-                                                            @endif"
-                                                        aria-valuemin="0"
-                                                        aria-valuemax="100">
-                                                        <span class="progress-status">
-                                                            {{ ucfirst($subscription->status) }}
-                                                        </span>
+                                                            role="progressbar"
+                                                            style="width:
+                                                                @if($user->subscription->status == 'not-subscribed') 0%
+                                                                @elseif($user->subscription->status == 'pending') 25%
+                                                                @elseif($user->subscription->status == 'processing') 50%
+                                                                @elseif($user->subscription->status == 'active-subscription') 100%
+                                                                @endif"
+                                                            aria-valuenow="
+                                                                @if($user->subscription->status == 'not-subscribed') 0
+                                                                @elseif($user->subscription->status == 'pending') 25
+                                                                @elseif($user->subscription->status == 'processing') 50
+                                                                @elseif($user->subscription->status == 'active-subscription') 100
+                                                                @endif"
+                                                            aria-valuemin="0"
+                                                            aria-valuemax="100">
+                                                            <span class="progress-status">
+                                                                {{ ucfirst($user->subscription->status) }}
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @else
+                                                    N/A
+                                                @endif
                                             </td>
-                                            <td>{{ $subscription->created_at->format('d M Y') }}</td>
+                                            <td>{{ $user->subscription ? $user->subscription->created_at->format('d M Y') : 'N/A' }}</td>
+                                            <td>
+                                                @if($user->email_verified_at)
+                                                    Verified
+                                                @else
+                                                    Not Verified
+                                                @endif
+                                            </td>
                                             <td class="text-center">
+                                                @if($user->subscription)
                                                 <ul class="table-controls">
                                                     <li>
-                                                        <a href="{{ route('admin.subscriptions.edit', $subscription->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <a href="{{ route('admin.subscriptions.edit', $user->subscription->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-primary">
                                                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -108,10 +123,10 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <form action="{{ route('admin.subscriptions.destroy', $subscription->id) }}" method="POST" style="display:inline-block;">
+                                                        <form action="{{ route('admin.subscriptions.destroy', $user->subscription->id) }}" method="POST" style="display:inline-block;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="button" style="border:none; background:none;" class="warning confirm btn btn-danger delete-button" data-id="{{ $subscription->id }}" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <button type="button" style="border:none; background:none;" class="warning confirm btn btn-danger delete-button" data-id="{{ $user->subscription->id }}" data-toggle="tooltip" data-placement="top" title="Delete">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle text-danger">
                                                                     <circle cx="12" cy="12" r="10"></circle>
                                                                     <line x1="15" y1="9" x2="9" y2="15"></line>
@@ -121,12 +136,15 @@
                                                         </form>
                                                     </li>
                                                 </ul>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
+
+
                         </div>
                     </div>
                 </div>

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('plan')->default('N/A');
-            $table->enum('status', ['not-subscribed', 'pending', 'processing', 'active-subscription'])->default('not-subscribed');
+            $table->foreignId('plan_id')->constrained()->onDelete('cascade');
+            $table->string('status')->default('not-subscribed');
             $table->timestamps();
         });
     }

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Deposit;
 use App\Models\Withdrawal;
 use App\Models\Investment;
+use App\Models\Subscription;
+use App\Models\Transaction;
 
 // Authentication and Email Verification Route
 Auth::routes(['verify' => true]);
