@@ -16,10 +16,6 @@
 	</head>
 		<body>
 
-		<!--[if lt IE 8]>
-			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
-
         <div id="preloader"></div>
         @include('include.header')
         <!-- header end -->
@@ -98,21 +94,29 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="contact-form">
                             <div class="row">
-                                <form id="contactForm" method="POST" action="https://rockstheme.com/rocks/aievari-live/contact.php" class="contact-form">
+
+                                @if(session('message'))
+                                    <div class="alert alert-success">
+                                        {{ session('message') }}
+                                    </div>
+                                @endif
+
+                                <form method="POST" action="{{ route('contact.store') }}" class="contact-form">
+                                    @csrf
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" class="form-control" placeholder="Name" required data-error="Please enter your name">
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="email" class="email form-control" id="email" placeholder="Email" required data-error="Please enter your email">
+                                        <input type="email" class="email form-control" id="email" name="email" placeholder="Email" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <input type="text" id="msg_subject" class="form-control" placeholder="Subject" required data-error="Please enter your message subject">
+                                        <input type="text" id="msg_subject" name="subject" class="form-control" placeholder="Subject" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <textarea id="message" rows="7" placeholder="Massage" class="form-control" required data-error="Write your message"></textarea>
+                                        <textarea id="message" name="message" rows="7" placeholder="Message" class="form-control" required></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">

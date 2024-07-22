@@ -24,10 +24,6 @@
 	</head>
 		<body>
 
-		<!--[if lt IE 8]>
-			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
-
         <div id="preloader"></div>
         @include('include.header')
         <!-- header end -->
@@ -85,31 +81,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="intro-content">
-                    <div class="slider-images">
-                        <img src="{{asset('frontend/img/slider/h3.jpg')}}" alt="">
-                    </div>
-                    <div class="slider-content">
-                        <div class="display-table">
-                            <div class="display-table-cell">
-                                <div class="container">
-                                    <div class="row">
-                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <!-- Start Slider content -->
-                                            <div class="slide-content text-center">
-                                                <h2 class="title2">Best secure investment plan</h2>
-                                                <div class="layer-1-3">
-                                                    <a href="#" class="ready-btn left-btn" >Get started</a>
-                                                </div>
-                                            </div>
-                                            <!-- End Slider content -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
+
             </div>
         </div>
         <!-- End Slider Area -->
@@ -123,7 +95,7 @@
                             <!-- fun_text  -->
                             <div class="fun_text">
                                 <span class="counter-icon"><i class="flaticon-035-savings"></i></span>
-                                <span class="counter">$5974544</span>
+                                <span class="counter">$5,974,544</span>
                                 <h4>Total Deposited</h4>
                             </div>
                         </div>
@@ -131,7 +103,7 @@
                             <!-- fun_text  -->
                             <div class="fun_text">
                                <span class="counter-icon"><i class="flaticon-034-reward"></i></span>
-                                <span class="counter">2209</span>
+                                <span class="counter">2,209</span>
                                 <h4>Total Members</h4>
                             </div>
                         </div>
@@ -139,7 +111,7 @@
                             <!-- fun_text  -->
                             <div class="fun_text">
                                <span class="counter-icon"><i class="flaticon-016-graph"></i></span>
-                                <span class="counter">$3974544</span>
+                                <span class="counter">$3,974,544</span>
                                 <h4>Total Payments</h4>
                             </div>
                         </div>
@@ -147,7 +119,7 @@
                             <!-- fun_text  -->
                             <div class="fun_text">
                               <span class="counter-icon"><i class="flaticon-043-world"></i></span>
-                                <span class="counter">80</span>
+                                <span class="counter">10</span>
                                 <h4>World Country</h4>
                             </div>
                         </div>
@@ -163,7 +135,7 @@
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="section-headline text-center">
                             <h3>The best investment plan</h3>
-                            <p>Help agencies to define their new business objectives and then create professional software.</p>
+                            <p>Empowering you to redefine your business goals with these investment solutions.</p>
 						</div>
 					</div>
 				</div>
@@ -205,7 +177,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                          <p class="modal-text">Please sign up and verify your account via the email we send. Once verified, choose an investment plan and make your payment to the provided USDT (ERC-20) address. Then, email a screenshot of your transaction receipt to <a href="mailto:info@tetherelitefinance.com">info@tetherelitefinance.com</a> for swift approval.
+                                          <p class="modal-text">Please sign up and verify your account via the email we send. Once verified, choose an investment plan and make your payment to the provided USDT (TRC-20) address. Then, email a screenshot of your transaction receipt to <a href="mailto:info@tetherelitefinance.com">info@tetherelitefinance.com</a> for swift approval.
                                           </p>
                                     </div>
                                     <div class="modal-footer md-button">
@@ -227,7 +199,7 @@
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="section-headline text-center">
                             <h3>Why choose investment plan</h3>
-                            <p>Help agencies to define their new business objectives and then create professional software.</p>
+                            <p>Explore why TetherELiteFinance is the top choice for secure, expert-driven investment solutions.</p>
 						</div>
 					</div>
 				</div>
@@ -239,7 +211,7 @@
                                 <a class="support-images" href="#"><i class="flaticon-023-management"></i></a>
                                 <div class="support-content">
                                     <h4>Expert management</h4>
-                                    <p>Replacing a  maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create</p>
+                                    <p>Benefit from our team’s extensive expertise in managing your investments effectively.</p>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +221,7 @@
                                 <a class="support-images" href="#"><i class="flaticon-036-security"></i></a>
                                 <div class="support-content">
                                     <h4>Secure investment</h4>
-                                    <p>Replacing a  maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create</p>
+                                    <p>Invest with confidence knowing that your assets are safeguarded with our robust security measures.</p>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +231,7 @@
                                 <a class="support-images" href="#"><i class="flaticon-003-approve"></i></a>
                                 <div class="support-content">
                                     <h4>Registered company</h4>
-                                    <p>Replacing a  maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create</p>
+                                    <p>We are a fully registered firm, adhering to industry standards for transparency and compliance.</p>
                                 </div>
                             </div>
                         </div>
@@ -269,7 +241,7 @@
                                 <a class="support-images" href="#"><i class="flaticon-042-wallet"></i></a>
                                 <div class="support-content">
                                     <h4>Instant withdrawal</h4>
-                                    <p>Replacing a  maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create</p>
+                                    <p>Access your funds instantly with our fast and flexible withdrawal options.</p>
                                 </div>
                             </div>
                         </div>
@@ -279,7 +251,7 @@
                                 <a class="support-images" href="#"><i class="flaticon-032-report"></i></a>
                                 <div class="support-content">
                                     <h4>Verified security</h4>
-                                    <p>Replacing a  maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create</p>
+                                    <p>Our platform uses verified security protocols to protect your investments.</p>
                                 </div>
                             </div>
                         </div>
@@ -289,7 +261,7 @@
                                 <a class="support-images" href="#"><i class="flaticon-024-megaphone"></i></a>
                                 <div class="support-content">
                                     <h4>Live customer support</h4>
-                                    <p>Replacing a  maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create</p>
+                                    <p>Receive prompt assistance with our dedicated 24/7 customer support team.</p>
                                 </div>
                             </div>
                         </div>
@@ -304,20 +276,22 @@
                 <div class="row">
                     <!-- column end -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
+                        <!-- Add an image or any other content if needed -->
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="self-content">
-							<h4>An investment multi-national firm is a invest money of one or more experts. Provides more profite, We help your satele to future life and then create the road. Grow Money speedly without any risk. </h4>
-                            <span class="talk-text">Alex ferneld, CEO</span>
+                            <h4>TetherELiteFinance is a leading multi-national investment firm specializing in advanced financial strategies and innovative trading solutions. Our mission is to help you grow your wealth rapidly and securely, leveraging the expertise of our financial specialists. We provide profitable investment opportunities with minimized risk, paving the way for a brighter financial future.</h4>
+                            <span class="talk-text">Cruise Tether, CEO</span>
                         </div>
                     </div>
                     <!-- column end -->
                 </div>
             </div>
         </div>
+
         <!-- End Self-area -->
         <!-- Start Work proses Area -->
-        <div class="work-proses fix bg-color area-padding-2">
+        {{-- <div class="work-proses fix bg-color area-padding-2">
 			<div class="container">
 			    <div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
@@ -378,7 +352,7 @@
                     </div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
         <!-- End Work proses Area -->
         <!--Start payment-history area -->
         <div class="payment-history-area bg-color fix area-padding-2">
@@ -462,200 +436,6 @@
             </div>
         </div>
         <!-- End Banner Area -->
-        <!-- Start Blog Area-->
-        <div class="blog-area fix bg-color area-padding-2">
-            <div class="container">
-                <div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="section-headline text-center">
-                            <h3>Global investment plan news</h3>
-							<p>Dummy text is also used to demonstrate the appearance of different typefaces and layouts</p>
-						</div>
-					</div>
-				</div>
-                <div class="row">
-                    <div class="blog-grid home-blog">
-                        <!-- Start single blog -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-blog">
-                               <div class="blog-image">
-									<a class="image-scale" href="#">
-										<img src="{{asset('frontend/img/blog/b1.jpg')}}" alt="">
-									</a>
-								</div>
-                                <div class="blog-content">
-                                   <div class="blog-meta">
-                                        <span class="admin-type">
-                                            <i class="fa fa-user"></i>
-                                            Admin
-                                        </span>
-                                        <span class="date-type">
-                                            <i class="fa fa-calendar"></i>
-                                            20 july, 2019
-                                        </span>
-                                        <span class="comments-type">
-                                            <i class="fa fa-comment-o"></i>
-                                            13
-                                        </span>
-                                    </div>
-                                    <a href="#">
-                                        <h4>Creative design clients response is better</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End single blog -->
-                        <!-- Start single blog -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-blog">
-                                <div class="blog-content">
-                                   <div class="blog-meta">
-                                       <span class="admin-type">
-                                            <i class="fa fa-user"></i>
-                                            Admin
-                                        </span>
-                                        <span class="date-type">
-                                           <i class="fa fa-calendar"></i>
-                                            13 may, 2018
-                                        </span>
-                                        <span class="comments-type">
-                                            <i class="fa fa-comment-o"></i>
-                                            16
-                                        </span>
-                                    </div>
-                                    <a href="#">
-                                        <h4>Web development is a best work in future world</h4>
-                                    </a>
-                                </div>
-                                <div class="blog-image">
-									<a class="image-scale" href="#">
-										<img src="{{asset('frontend/img/blog/b2.jpg')}}" alt="">
-									</a>
-								</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-blog">
-                                <div class="blog-image">
-									<a class="image-scale" href="#">
-										<img src="{{asset('frontend/img/blog/b3.jpg')}}" alt="">
-									</a>
-								</div>
-                                <div class="blog-content">
-                                   <div class="blog-meta">
-                                        <span class="admin-type">
-                                            <i class="fa fa-user"></i>
-                                            Admin
-                                        </span>
-                                        <span class="date-type">
-                                           <i class="fa fa-calendar"></i>
-                                            24 april, 2019
-                                        </span>
-                                        <span class="comments-type">
-                                            <i class="fa fa-comment-o"></i>
-                                            07
-                                        </span>
-                                    </div>
-                                    <a href="#">
-                                        <h4>You can trust me and business with together</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End single blog -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-blog">
-                                <div class="blog-content">
-                                    <div class="blog-meta">
-                                        <span class="admin-type">
-                                            <i class="fa fa-user"></i>
-                                            Admin
-                                        </span>
-                                        <span class="date-type">
-                                           <i class="fa fa-calendar"></i>
-                                            28 june, 2019
-                                        </span>
-                                        <span class="comments-type">
-                                            <i class="fa fa-comment-o"></i>
-                                            32
-                                        </span>
-                                    </div>
-                                    <a href="#">
-                                        <h4>business man want to be benifit any way</h4>
-                                    </a>
-                                </div>
-                                <div class="blog-image">
-									<a class="image-scale" href="#">
-										<img src="{{asset('frontend/img/blog/b4.jpg')}}" alt="">
-									</a>
-								</div>
-                            </div>
-                        </div>
-                        <!-- End single blog -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-blog">
-                                <div class="blog-image">
-									<a class="image-scale" href="#">
-										<img src="{{asset('frontend/img/blog/b5.jpg')}}" alt="">
-									</a>
-								</div>
-                                <div class="blog-content">
-                                    <div class="blog-meta">
-                                        <span class="admin-type">
-                                            <i class="fa fa-user"></i>
-                                            Admin
-                                        </span>
-                                        <span class="date-type">
-                                           <i class="fa fa-calendar"></i>
-                                            28 june, 2019
-                                        </span>
-                                        <span class="comments-type">
-                                            <i class="fa fa-comment-o"></i>
-                                            32
-                                        </span>
-                                    </div>
-                                    <a href="#">
-                                        <h4>business man want to be benifit any way</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End single blog -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-blog">
-                                <div class="blog-content">
-                                    <div class="blog-meta">
-                                        <span class="admin-type">
-                                            <i class="fa fa-user"></i>
-                                            Admin
-                                        </span>
-                                        <span class="date-type">
-                                           <i class="fa fa-calendar"></i>
-                                            28 june, 2019
-                                        </span>
-                                        <span class="comments-type">
-                                            <i class="fa fa-comment-o"></i>
-                                            32
-                                        </span>
-                                    </div>
-                                    <a href="#">
-                                        <h4>business man want to be benifit any way</h4>
-                                    </a>
-                                </div>
-                                <div class="blog-image">
-									<a class="image-scale" href="#">
-										<img src="{{asset('frontend/img/blog/b6.jpg')}}" alt="">
-									</a>
-								</div>
-                            </div>
-                        </div>
-                        <!-- End single blog -->
-                    </div>
-                </div>
-                <!-- End row -->
-            </div>
-        </div>
-        <!-- End Blog Area-->
         <!-- Start reviews Area -->
         <div class="reviews-area fix area-padding">
             <div class="container">
@@ -664,9 +444,9 @@
                         <div class="col-md-5 col-sm-5 col-xs-12">
                             <div class="testimonial-inner">
                                 <div class="review-head">
-                                    <h3>Our customer say about our company work</h3>
-                                    <p>The phrasal sequence of the Lorem Ipsum text is now so widespread and commonplace that many DTP programmes can generate dummy. The phrasal sequence of the Lorem Ipsum text is now so widespread and commonplace that many DTP programmes can generate dummy</p>
-                                    <a class="reviews-btn" href="review.html">More reviews</a>
+                                    <h3>What Our Clients Say About Us</h3>
+                                    <p>At TetherELiteFinance, we take pride in our exceptional client service and impressive financial returns. Our clients value our innovative approach and the impressive results we consistently deliver.</p>
+                                    <a class="reviews-btn" href="review.html">More Reviews</a>
                                 </div>
                             </div>
                         </div>
@@ -684,13 +464,13 @@
                                                     <a href="#"><i class="ti-star"></i></a>
                                                     <a href="#"><i class="ti-star"></i></a>
                                                 </div>
-                                                <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                                <p>"TetherELiteFinance has revolutionized my investment strategy. Their cutting-edge trading bots and strategic approach have consistently delivered remarkable returns. I am impressed by their professionalism and transparency."</p>
                                             </div>
-                                            <div class="testi-img ">
-                                                <img src="{{asset('frontend/img/review/1.jpg')}}" alt="">
+                                            <div class="testi-img">
+                                                <img src="{{asset('frontend/img/review/1.jpg')}}" alt="Client Review">
                                                 <div class="guest-details">
-                                                    <h4>Hamilton</h4>
-                                                    <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                                    <h4>James Carter</h4>
+                                                    <span class="guest-rev">Elite Investor - <a href="#">Long-term Client</a></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -706,13 +486,13 @@
                                                     <a href="#"><i class="ti-star"></i></a>
                                                     <a href="#"><i class="ti-star"></i></a>
                                                 </div>
-                                                <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                                <p>"The 25% biweekly ROI offered by TetherELiteFinance is unparalleled. Their innovative strategies and real-time market insights have provided me with substantial returns. I highly recommend their services."</p>
                                             </div>
-                                            <div class="testi-img ">
-                                                <img src="{{asset('frontend/img/review/2.jpg')}}" alt="">
+                                            <div class="testi-img">
+                                                <img src="{{asset('frontend/img/review/2.jpg')}}" alt="Client Review">
                                                 <div class="guest-details">
-                                                    <h4>Angel lima</h4>
-                                                    <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                                    <h4>Linda Foster</h4>
+                                                    <span class="guest-rev">Investor - <a href="#">Satisfied Client</a></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -728,13 +508,13 @@
                                                     <a href="#"><i class="ti-star"></i></a>
                                                     <a href="#"><i class="ti-star"></i></a>
                                                 </div>
-                                                <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                                <p>"TetherELiteFinance's use of Tether tokens and advanced trading techniques has provided me with a secure and profitable investment experience. Their team is knowledgeable and committed to delivering results."</p>
                                             </div>
-                                            <div class="testi-img ">
-                                                <img src="{{asset('frontend/img/review/3.jpg')}}" alt="">
+                                            <div class="testi-img">
+                                                <img src="{{asset('frontend/img/review/3.jpg')}}" alt="Client Review">
                                                 <div class="guest-details">
-                                                    <h4>Arthur Doil</h4>
-                                                    <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                                    <h4>Michael Lee</h4>
+                                                    <span class="guest-rev">Elite Investor - <a href="#">Long-term Client</a></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -750,13 +530,13 @@
                                                     <a href="#"><i class="ti-star"></i></a>
                                                     <a href="#"><i class="ti-star"></i></a>
                                                 </div>
-                                                <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                                <p>"I've been thoroughly impressed with TetherELiteFinance's innovative trading strategies and consistent returns. Their use of Tether's stable tokens has ensured a high level of security and profitability."</p>
                                             </div>
-                                            <div class="testi-img ">
-                                                <img src="{{asset('frontend/img/review/4.jpg')}}" alt="">
+                                            <div class="testi-img">
+                                                <img src="{{asset('frontend/img/review/4.jpg')}}" alt="Client Review">
                                                 <div class="guest-details">
-                                                    <h4>Gabriel Hank</h4>
-                                                    <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                                    <h4>Emily White</h4>
+                                                    <span class="guest-rev">Investor - <a href="#">Satisfied Client</a></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -766,6 +546,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -773,147 +554,157 @@
         <!-- Start FAQ area -->
         <div class="faq-area bg-color area-padding">
             <div class="container">
-               <div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="section-headline text-center">
-                            <h3>Some important FAQ</h3>
-                            <p>Help agencies to define their new business objectives and then create professional software.</p>
-						</div>
-					</div>
-				</div>
                 <div class="row">
-                    <!-- Start Column Start -->
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="section-headline text-center">
+                            <h3>Some Important FAQs</h3>
+                            <p>Discover how TetherELiteFinance leverages advanced trading strategies and Tether's hedge fund deposits to provide exceptional financial growth opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Start Column -->
                     <div class="col-md-7 col-sm-6 col-xs-12">
                         <div class="company-faq">
                             <div class="faq-full">
-								<div class="faq-details">
-									<div class="panel-group" id="accordion">
-										<!-- Panel Default -->
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="check-title">
-													<a data-toggle="collapse" class="active" data-parent="#accordion" href="#check1">
-														<span class="acc-icons"></span>How to successful our mission and vision
-													</a>
-												</h4>
-											</div>
-											<div id="check1" class="panel-collapse collapse in">
-												<div class="panel-body">
-													<p>
-														When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection of text within a single line, the amount of words is roughly being maintained.
-													</p>
-												</div>
-											</div>
-										</div>
-										<!-- End Panel Default -->
-										<!-- Panel Default -->
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="check-title">
-													<a data-toggle="collapse" data-parent="#accordion" href="#check2">
-														<span class="acc-icons"></span>Clients satisfaction make company Value.
-													</a>
-												</h4>
-											</div>
-											<div id="check2" class="panel-collapse collapse">
-												<div class="panel-body">
-													<p>
-														When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection of text within a single line, the amount of words is roughly being maintained.
-													</p>
-												</div>
-											</div>
-										</div>
-										<!-- End Panel Default -->
-										<!-- Panel Default -->
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="check-title">
-													<a data-toggle="collapse" data-parent="#accordion" href="#check3">
-														<span class="acc-icons"></span>World class creative design and development firm.
-													</a>
-												</h4>
-											</div>
-											<div id="check3" class="panel-collapse collapse ">
-												<div class="panel-body">
-													<p>
-														When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection of text within a single line, the amount of words is roughly being maintained.
-													</p>
-												</div>
-											</div>
-										</div>
-										<!-- End Panel Default -->
-										<!-- Panel Default -->
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="check-title">
-													<a data-toggle="collapse" data-parent="#accordion" href="#check4">
-														<span class="acc-icons"></span>We are the best online flatform
-													</a>
-												</h4>
-											</div>
-											<div id="check4" class="panel-collapse collapse ">
-												<div class="panel-body">
-													<p>
-														When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection of text within a single line, the amount of words is roughly being maintained.
-													</p>
-												</div>
-											</div>
-										</div>
-										<!-- End Panel Default -->
-										<!-- Panel Default -->
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="check-title">
-													<a data-toggle="collapse" data-parent="#accordion" href="#check5">
-														<span class="acc-icons"></span>Clients satisfaction make company Value.
-													</a>
-												</h4>
-											</div>
-											<div id="check5" class="panel-collapse collapse">
-												<div class="panel-body">
-													<p>
-														When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection of text within a single line, the amount of words is roughly being maintained.
-													</p>
-												</div>
-											</div>
-										</div>
-										<!-- End Panel Default -->
-									</div>
-								</div>
-								<!-- End FAQ -->
-							</div>
+                                <div class="faq-details">
+                                    <div class="panel-group" id="accordion">
+                                        <!-- Panel Default -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="check-title">
+                                                    <a data-toggle="collapse" class="active" data-parent="#accordion" href="#check1">
+                                                        <span class="acc-icons"></span>What is TetherELiteFinance's Investment Strategy?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="check1" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        TetherELiteFinance utilizes Tether's hedge fund deposits in USDT to execute strategic trades in both spot and futures markets. Our approach involves arbitrage trading, investment in low-cap projects, and participation in ICOs and token presales, all powered by advanced technical analysis and custom trading bots.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Panel Default -->
+                                        <!-- Panel Default -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="check-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#check2">
+                                                        <span class="acc-icons"></span>How does TetherELiteFinance ensure high returns?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="check2" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Our platform guarantees a remarkable 25% ROI paid biweekly by employing sophisticated trading strategies and leveraging real-time market insights. We engage in various profit streams, including arbitrage trading and funding ICOs, to optimize investor returns.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Panel Default -->
+                                        <!-- Panel Default -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="check-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#check3">
+                                                        <span class="acc-icons"></span>What makes TetherELiteFinance stand out?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="check3" class="panel-collapse collapse ">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        TetherELiteFinance differentiates itself through its diversified profit streams, including arbitrage trading across multiple exchanges, investment in promising low-cap projects, and participation in ICOs. Our exclusive connection with Tether and sophisticated trading tools further enhance our competitive edge.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Panel Default -->
+                                        <!-- Panel Default -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="check-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#check4">
+                                                        <span class="acc-icons"></span>How can I get started with TetherELiteFinance?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="check4" class="panel-collapse collapse ">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        To join TetherELiteFinance, simply sign up on our platform and become part of an exclusive network of elite investors. Invest with confidence and benefit from our advanced trading strategies and exceptional returns.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Panel Default -->
+                                        <!-- Panel Default -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="check-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#check5">
+                                                        <span class="acc-icons"></span>What is the role of Tether tokens in your strategy?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="check5" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Tether tokens are crucial to our investment strategy as they provide stability and liquidity. Pegged 1-to-1 with fiat currencies and backed by substantial reserves, Tether tokens enable us to engage in high-yield trading opportunities while minimizing risk.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Panel Default -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- End Column -->
                     <div class="col-md-5 col-sm-6 col-xs-12">
                         <div class="faq-content">
-                        	<h4>Have a any qustion?</h4>
-							<div class="faq-quote">
-								<div class="row">
-									<form id="contactForm" method="POST" action="https://rockstheme.com/rocks/aievari-live/contact.php" class="contact-form">
-										<div class="col-md-12 col-sm-12 col-xs-12">
-											<input type="text" id="name" class="form-control" placeholder="Name" required data-error="Please enter your name">
-											<div class="help-block with-errors"></div>
-											<input type="email" class="email form-control" id="email" placeholder="Email" required data-error="Please enter your email">
-											<div class="help-block with-errors"></div>
-											<input type="text" id="msg_subject" class="form-control" placeholder="Subject" required="" data-error="Please enter your message subject">
-											<div class="help-block with-errors"></div>
-										</div>
-										<div class="col-md-12 col-sm-12 col-xs-12">
-											<textarea id="message" rows="7" placeholder="Massage" class="form-control" required data-error="Write your message"></textarea>
-											<div class="help-block with-errors"></div>
-											<button type="submit" id="submit" class="quote-btn">Submit</button>
-											<div id="msgSubmit" class="h3 text-center hidden"></div>
-											<div class="clearfix"></div>
-										</div>
-									</form>
-								</div>
-							</div>
+                            <h4>Have Any Questions?</h4>
+                            <div class="faq-quote">
+                                <div class="row">
+                                    <div class="row">
+
+                                        @if (session('status'))
+                                            <div class="alert alert-success">
+                                                {{ session('status') }}
+                                            </div>
+                                        @endif
+                                        <form method="POST" action="{{ route('faq.store') }}" class="contact-form">
+                                            @csrf
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+                                                <div class="help-block with-errors"></div>
+                                                <input type="email" class="email form-control" id="email" name="email" placeholder="Email" required>
+                                                <div class="help-block with-errors"></div>
+                                                <input type="text" id="msg_subject" name="msg_subject" class="form-control" placeholder="Subject" required>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <textarea id="message" name="message" rows="7" placeholder="Message" class="form-control" required></textarea>
+                                                <div class="help-block with-errors"></div>
+                                                <button type="submit" id="submit" class="quote-btn">Submit</button>
+                                                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- End Column -->
                 </div>
             </div>
+
         </div>
         <!-- End FAQ area -->
         <!-- Start Footer Area -->

@@ -50,6 +50,7 @@
                         <div class="widget-content widget-content-area br-6">
 
                             <h3>{{ $user->name }}, welcome. Select a subscription plan</h3>
+
                             <div class="table-responsive mb-4 mt-4">
                                 <!-- Success Message -->
                                 @if(session('success'))

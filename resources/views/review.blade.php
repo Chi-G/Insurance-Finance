@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<!-- Mirrored from rockstheme.com/rocks/aievari-live/review.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Jun 2024 20:08:53 GMT -->
 <head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -15,10 +14,6 @@
         <link href="{{ asset('frontend/css/marquee-crypto.css') }}" rel="stylesheet"> <!-- Include the marquee CSS file -->
 	</head>
 		<body>
-
-		<!--[if lt IE 8]>
-			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
 
         <div id="preloader"></div>
         @include('include.header')
@@ -47,7 +42,7 @@
         <div class="reviews-area review-page-area page-padding-2">
             <div class="container">
                 <div class="row">
-                    <div class="reviews-content ">
+                    <div class="reviews-content">
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="single-testi">
                                 <div class="testi-text">
@@ -59,13 +54,13 @@
                                             <a href="#"><i class="ti-star"></i></a>
                                             <a href="#"><i class="ti-star"></i></a>
                                         </div>
-                                        <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                        <p>Tether Elite’s exceptional service has transformed my business. They offer reliable and innovative solutions tailored to my needs.</p>
                                     </div>
-                                    <div class="testi-img ">
-                                        <img src="{{asset('frontend/img/review/1.jpg')}}" alt="">
+                                    <div class="testi-img">
+                                        <img src="{{asset('frontend/img/review/1.jpg')}}" alt="Reviewer 1">
                                         <div class="guest-details">
-                                            <h4>Hamilton</h4>
-                                            <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                            <h4>Alex Johnson</h4>
+                                            <span class="guest-rev">Clients - <a href="#">Startup Founder</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -83,13 +78,13 @@
                                             <a href="#"><i class="ti-star"></i></a>
                                             <a href="#"><i class="ti-star"></i></a>
                                         </div>
-                                        <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                        <p>Exceptional support and top-notch expertise. Tether Elite has been a key player in our growth, offering insights that matter.</p>
                                     </div>
-                                    <div class="testi-img ">
-                                        <img src="{{asset('frontend/img/review/2.jpg')}}" alt="">
+                                    <div class="testi-img">
+                                        <img src="{{asset('frontend/img/review/2.jpg')}}" alt="Reviewer 2">
                                         <div class="guest-details">
-                                            <h4>Angel Lima</h4>
-                                            <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                            <h4>Maria Lopez</h4>
+                                            <span class="guest-rev">Clients - <a href="#">Tech Entrepreneur</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -107,13 +102,13 @@
                                             <a href="#"><i class="ti-star"></i></a>
                                             <a href="#"><i class="ti-star"></i></a>
                                         </div>
-                                        <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                        <p>Partnering with Tether Elite has been a game-changer. Their tailored solutions have significantly enhanced our operational efficiency.</p>
                                     </div>
-                                    <div class="testi-img ">
-                                        <img src="{{asset('frontend/img/review/3.jpg')}}" alt="">
+                                    <div class="testi-img">
+                                        <img src="{{asset('frontend/img/review/3.jpg')}}" alt="Reviewer 3">
                                         <div class="guest-details">
-                                            <h4>Arthur Doil</h4>
-                                            <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                            <h4>Chris Patel</h4>
+                                            <span class="guest-rev">Clients - <a href="#">Business Analyst</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -131,13 +126,13 @@
                                             <a href="#"><i class="ti-star"></i></a>
                                             <a href="#"><i class="ti-star"></i></a>
                                         </div>
-                                        <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                        <p>Tether Elite offers unmatched service and expertise. They’ve helped us streamline processes and achieve our business goals effectively.</p>
                                     </div>
-                                    <div class="testi-img ">
-                                        <img src="{{asset('frontend/img/review/4.jpg')}}" alt="">
+                                    <div class="testi-img">
+                                        <img src="{{asset('frontend/img/review/4.jpg')}}" alt="Reviewer 4">
                                         <div class="guest-details">
-                                            <h4>Gabriel Hank</h4>
-                                            <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                            <h4>Jordan Lee</h4>
+                                            <span class="guest-rev">Clients - <a href="#">Corporate Manager</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -155,13 +150,13 @@
                                             <a href="#"><i class="ti-star"></i></a>
                                             <a href="#"><i class="ti-star"></i></a>
                                         </div>
-                                        <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                        <p>Their approach to problem-solving is impressive. Tether Elite’s support has been instrumental in overcoming challenges and driving success.</p>
                                     </div>
-                                    <div class="testi-img ">
-                                        <img src="{{asset('frontend/img/review/5.jpg')}}" alt="">
+                                    <div class="testi-img">
+                                        <img src="{{asset('frontend/img/review/5.jpg')}}" alt="Reviewer 5">
                                         <div class="guest-details">
-                                            <h4>Farmila</h4>
-                                            <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                            <h4>Elena Smith</h4>
+                                            <span class="guest-rev">Clients - <a href="#">Non-Profit Director</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -179,13 +174,13 @@
                                             <a href="#"><i class="ti-star"></i></a>
                                             <a href="#"><i class="ti-star"></i></a>
                                         </div>
-                                        <p>When replacing a multi-lined selection of text, the generated dummy text maintains the amount of lines. When replacing a selection. help agencies.</p>
+                                        <p>Tether Elite delivers results. Their expertise and dedication have been key to achieving our business milestones smoothly and efficiently.</p>
                                     </div>
-                                    <div class="testi-img ">
-                                        <img src="{{asset('frontend/img/review/6.jpg')}}" alt="">
+                                    <div class="testi-img">
+                                        <img src="{{asset('frontend/img/review/6.jpg')}}" alt="Reviewer 6">
                                         <div class="guest-details">
-                                            <h4>Timeo Poll</h4>
-                                            <span class="guest-rev">Clients - <a href="#">General customer</a></span>
+                                            <h4>Michael Thompson</h4>
+                                            <span class="guest-rev">Clients - <a href="#">Marketing Specialist</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -193,6 +188,7 @@
                         </div>
                         <!-- End single item -->
                     </div>
+
                 </div>
             </div>
         </div>

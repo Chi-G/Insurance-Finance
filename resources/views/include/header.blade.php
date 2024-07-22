@@ -66,7 +66,7 @@
                                                     <li><a href="{{ route('register') }}">Register</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a class="pages" href="{{ url('/blogs') }}">Blog</a>
+                                            {{-- <li><a class="pages" href="{{ url('/blogs') }}">Blog</a> --}}
                                             </li>
                                             <li><a href="{{ url('/contact') }}">contacts</a></li>
                                         </ul>

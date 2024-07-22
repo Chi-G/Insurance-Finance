@@ -58,7 +58,8 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Active Plan</th>
-                                            <th>Status</th>
+                                            <th>Subscription Status</th>
+                                            <th>Withdrawal Status</th>
                                             <th>Subscribed Date</th>
                                             <th>Verified Users</th>
                                             <th>Action</th>
@@ -102,6 +103,17 @@
                                                 @else
                                                     N/A
                                                 @endif
+                                            </td>
+                                            <td>
+                                                @foreach($user->withdrawals as $withdrawal)
+                                                    <div class="badge badge-pill
+                                                        @if($withdrawal->status == 'Pending') badge-warning
+                                                        @elseif($withdrawal->status == 'Processing') badge-success
+                                                        @elseif($withdrawal->status == 'Approved') badge-danger
+                                                        @endif">
+                                                        {{ ucfirst($withdrawal->status) }}
+                                                    </div>
+                                                @endforeach
                                             </td>
                                             <td>{{ $user->subscription ? $user->subscription->created_at->format('d M Y') : 'N/A' }}</td>
                                             <td>

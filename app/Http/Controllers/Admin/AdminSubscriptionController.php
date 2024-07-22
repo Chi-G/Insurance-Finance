@@ -8,13 +8,15 @@ use App\Models\Subscription;
 use App\Models\Transaction;
 use App\Models\Plan;
 use App\Models\User;
+use App\Models\Withdrawal;
 
 
 class AdminSubscriptionController extends Controller
 {
     public function index()
     {
-        $users = User::with('subscription')->get();
+        $users = User::with(['subscription.plan', 'withdrawals'])->get();
+        // $users = User::with('subscription')->get();
         return view('admin.portfolio.portfolio_index', compact('users'));
     }
 
@@ -22,20 +24,35 @@ class AdminSubscriptionController extends Controller
     {
         $users = User::all();
         $plans = Plan::all();
-        return view('admin.portfolio.portfolio_edit', compact('subscription', 'users', 'plans'));
+        $withdrawals = Withdrawal::where('subscription_id', $subscription->id)->get(); // Fetch withdrawals related to this subscription
+        return view('admin.portfolio.portfolio_edit', compact('subscription', 'users', 'plans', 'withdrawals'));
     }
 
-    public function update(Request $request, Subscription $subscription)
+    public function update(Request $request, Subscription $subscription, Withdrawal $withdrawals)
     {
         $request->validate([
             'plan_id' => 'required|exists:plans,id',
             'status' => 'required|string|in:not-subscribed,pending,processing,active-subscription',
+            'withdrawal_id' => 'nullable|exists:withdrawals,id',
+            'withdrawal_amount' => 'nullable|numeric',
+            'withdrawal_status' => 'nullable|string|in:pending,approved,rejected',
         ]);
 
         $subscription->update([
             'plan_id' => $request->plan_id,
             'status' => $request->status,
         ]);
+
+        // Update withdrawal if provided
+        if ($request->withdrawal_id) {
+            $withdrawal = Withdrawal::find($request->withdrawal_id);
+            if ($withdrawal) {
+                $withdrawal->update([
+                    'amount' => $request->withdrawal_amount,
+                    'status' => $request->withdrawal_status,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.subscriptions')->with('success', 'Subscription updated successfully.');
     }

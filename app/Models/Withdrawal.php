@@ -10,9 +10,37 @@ class Withdrawal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'date', 'amount', 'currency'];
+    protected $fillable = [
+        'name',
+        'date',
+        'amount',
+        'currency',
+        'user_id',
+        'plan_id',
+        'status',
+    ];
 
     protected $casts = [
         'date' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function subscription()
+    {
+        return $this->belongsTo(Subscription::class);
+    }
 }

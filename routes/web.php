@@ -31,9 +31,9 @@ Route::get('/', function () {
 });
 
 Route::view('/about', 'about');
-Route::view('/faq', 'faq');
+// Route::view('/faq', 'faq');
 Route::view('/blogs', 'blog');
-Route::view('/contact', 'contact');
+// Route::view('/contact', 'contact');
 Route::view('/team', 'team');
 Route::view('/reviews', 'review');
 Route::get('/investment', function () {
@@ -42,6 +42,15 @@ Route::get('/investment', function () {
     $investments = \App\Models\Investment::all();
     return view('investment', compact('deposits', 'withdrawals', 'investments'));
 });
+
+// Faq Contact Form
+Route::post('/', [\App\Http\Controllers\FaqContactController::class, 'store'])->name('faq.home');
+Route::post('/faq', [\App\Http\Controllers\FaqContactController::class, 'faq'])->name('faq.faq');
+Route::get('/faq', [\App\Http\Controllers\FaqContactController::class, 'index'])->name('faq');
+
+// Contact Form
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact');
 
 // Authenticated Routes
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -59,6 +68,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/portfolio', [\App\Http\Controllers\SubscriptionController::class, 'index'])->name('user.portfolio');
     Route::post('/user/portfolio', [\App\Http\Controllers\SubscriptionController::class, 'store'])->name('user.portfolio.store');
     Route::get('/user/portfolio/show', [\App\Http\Controllers\SubscriptionController::class, 'show'])->name('user.portfolio.show');
+
+    Route::get('/user/payment', [\App\Http\Controllers\SubscriptionController::class, 'payment'])->name('user.payment');
+    Route::get('/user/withdrawal', [\App\Http\Controllers\SubscriptionController::class, 'withdrawal'])->name('user.withdrawal');
 
     Route::get('/subscription/summary', [SubscriptionController::class, 'summary'])->name('subscription.summary');
     Route::get('/subscription/transfer', [SubscriptionController::class, 'transfer'])->name('subscription.transfer');

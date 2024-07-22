@@ -62,4 +62,18 @@ class SubscriptionController extends Controller
 
         return view('user.portfolio', compact('user', 'subscription'));
     }
+
+    public function payment() {
+        $user = Auth::user();
+        $subscriptionPlans = Plan::all();
+        return view('user.payment', compact('subscriptionPlans', 'user'));
+    }
+
+    public function withdrawal() {
+        $plans = Plan::all();
+        $user = Auth::user();
+        $subscription = Subscription::where('user_id', $user->id)->first();
+        $transactions = Transaction::where('user_id', $user->id)->get();
+        return view('user.withdrawal',  compact('plans', 'user', 'subscription', 'transactions'));
+    }
 }

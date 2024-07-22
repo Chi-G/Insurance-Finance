@@ -69,7 +69,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="status">Status</label>
+                                        <label for="status">Subscription Status</label>
                                         <select id="status" name="status" class="form-control" required>
                                             <option value="not-subscribed" {{ (isset($subscription) && $subscription->status == 'not-subscribed') ? 'selected' : '' }}>Not Subscribed</option>
                                             <option value="pending" {{ (isset($subscription) && $subscription->status == 'pending') ? 'selected' : '' }}>Pending</option>
@@ -81,12 +81,55 @@
                                         @enderror
                                     </div>
 
+                                    <td>
+                                        <div class="form-group">
+                                            <label for="withdrawal">Select Withdrawal</label>
+                                            <select id="withdrawal" name="withdrawal_id" class="form-control">
+                                                <option value="">Select Withdrawal</option>
+                                                @foreach($withdrawals as $withdrawal)
+                                                    <option value="{{ $withdrawal->id }}" {{ old('withdrawal_id', $subscription->withdrawal_id) == $withdrawal->id ? 'selected' : '' }}>
+                                                        Withdrawal ID: {{ $withdrawal->id }} - Amount: {{ $withdrawal->amount }} - Status: {{ ucfirst($withdrawal->status) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('withdrawal_id')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <!-- If the withdrawal ID is selected, show additional fields -->
+                                        @if($subscription->withdrawal_id)
+                                            @php
+                                                $selectedWithdrawal = $withdrawals->find($subscription->withdrawal_id);
+                                            @endphp
+                                            <div class="form-group">
+                                                <label for="withdrawal_amount">Withdrawal Amount</label>
+                                                <input type="number" id="withdrawal_amount" name="withdrawal_amount" class="form-control" value="{{ $selectedWithdrawal->amount }}">
+                                                @error('withdrawal_amount')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="withdrawal_status">Withdrawal Status</label>
+                                                <select id="withdrawal_status" name="withdrawal_status" class="form-control" required>
+                                                    <option value="pending" {{ $selectedWithdrawal->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                                    <option value="approved" {{ $selectedWithdrawal->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                                    <option value="rejected" {{ $selectedWithdrawal->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                                </select>
+                                                @error('withdrawal_status')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        @endif
+                                    </td>
+
                                     <button type="submit" class="btn btn-primary">
                                         {{ isset($subscription) ? 'Update Subscription' : 'Create Subscription' }}
                                     </button>
                                 </form>
                             </div>
-                    </div>
+                        </div>
                 </div>
             </div>
 
