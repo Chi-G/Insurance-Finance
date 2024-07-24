@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('backend/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}">
 
     <style>
+         .t-rotate270 { -webkit-transform: rotate(270deg); transform:rotate(270deg) }
+
         #demo_vertical::-ms-clear, #demo_vertical2::-ms-clear { display: none; }
         input#demo_vertical { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
         input#demo_vertical2 { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
@@ -119,12 +121,64 @@
                                             </div>
 
                                             <!-- Withdrawal Form Widget -->
-
-                                            <h5 class="">Withdrawal Information</h5>
+                                            <h5 class="">Withdrawal Request</h5>
 
                                             <div class="info-detail-2">
                                                 <p>Withdrawal Status</p>
-                                                <p class="acc-amount">{{ auth()->user()->withdrawal_status ?? 'not-requested' }}</p>
+
+                                                @php
+                                                    $status = auth()->user()->status ?? 'not-requested';
+                                                    $progress = 20;
+                                                    $percentage = '20%';
+                                                    $statusString = 'withdrawal ' . $status;
+                                                    $progressBarClass = 'bg-secondary'; // Default color
+
+                                                    switch ($status) {
+                                                        case 'pending':
+                                                            $progress = 30;
+                                                            $percentage = '30%';
+                                                            $progressBarClass = 'bg-warning';
+                                                            break;
+                                                        case 'contracting':
+                                                            $progress = 60;
+                                                            $percentage = '60%';
+                                                            $progressBarClass = 'bg-info';
+                                                            break;
+                                                        case 'evaluating':
+                                                            $progress = 80;
+                                                            $percentage = '80%';
+                                                            $progressBarClass = 'bg-primary';
+                                                            break;
+                                                        case 'taking-action':
+                                                            $progress = 90;
+                                                            $percentage = '90%';
+                                                            $progressBarClass = 'bg-success';
+                                                            break;
+                                                        case 'completed':
+                                                            $progress = 100;
+                                                            $percentage = '100%';
+                                                            $progressBarClass = 'bg-success';
+                                                            break;
+                                                        default:
+                                                            $progress = 20;
+                                                            $percentage = '20';
+                                                            $progressBarClass = 'bg-secondary';
+                                                            break;
+                                                    }
+                                                @endphp
+
+                                                <!-- Progress Bar Animated -->
+                                                <p class="acc-amount">
+                                                    <div class="progress br-30">
+                                                        <div class="progress-bar {{ $progressBarClass }}" role="progressbar" style="width: {{ $progress }}%" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="progress-title">
+                                                                <span>{{ $statusString }}: {{ $percentage }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </p>
+
+                                                <p class="acc-amount">{{ $status }}</p>
                                             </div>
 
                                             <form class="form-horizontal" method="POST" action="{{ route('withdrawal.store') }}">
@@ -200,6 +254,7 @@
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     @include('user.include.script')
+    <script src="{{asset('backend/plugins/highlight/highlight.pack.js')}}"></script>
     <script src="{{asset('backend/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
     <script src="{{asset('backend/plugins/bootstrap-touchspin/custom-bootstrap-touchspin.js')}}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

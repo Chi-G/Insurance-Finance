@@ -31,18 +31,18 @@ class WithdrawalController extends Controller
             'wallet_address' => 'required|string',
         ]);
 
+        $user = auth()->user();
+
         $withdrawal = Withdrawal::create([
-            'user_id' => auth()->id(),
+            'user_id'=> $user->id,
+            'name' => $user->name,
             'amount' => $request->amount,
             'wallet_address' => $request->wallet_address,
             'status' => 'pending',
+            'date' => Carbon::now(),
         ]);
 
         dd($withdrawal);
-
-        $user = auth()->user();
-        $user->withdrawal_status = 'pending';
-        $user->save();
 
         // Send email to user
         // Mail::to($user->email)->send(new \App\Mail\WithdrawalRequest($withdrawal));
