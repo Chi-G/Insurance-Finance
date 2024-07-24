@@ -54,7 +54,7 @@
                                         @foreach($sliders as $slider)
                                         <tr>
                                             <td>{{ $slider->title }}</td>
-                                            <td><img src="{{ asset('images/sliders/' . $slider->image) }}" alt="{{ $slider->title }}" width="100"></td>
+                                            <td><img src="{{ asset('storage/' . $slider->image) }}" alt="{{ $slider->title }}" width="100"></td>
                                             <td>{{ $slider->created_at->format('d M Y') }}</td>
                                             <td class="text-center">
                                                 <ul class="table-controls">

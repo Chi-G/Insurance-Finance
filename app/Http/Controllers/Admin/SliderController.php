@@ -30,19 +30,17 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate and store the new slider
         $request->validate([
-            'title' => 'required|string|max:255',
+           'title' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // other validations...
         ]);
 
-        $slider = new Slider();
-        $slider->title = $request->title;
-        $slider->image = $request->image->store('sliders', 'public');
-        // other fields...
+        $imagePath = $request->file('image')->store('images/sliders', 'public');
 
-        $slider->save();
+        Slider::create([
+            'title' => $request->title,
+            'image' => $imagePath,
+        ]);
 
         return redirect()->route('slider.index')->with('success', 'Slider created successfully.');
     }
@@ -50,22 +48,28 @@ class SliderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function update(Request $request, Slider $slider)
+    public function update(Request $request, $id)
     {
-        // Validate and update the slider
+            // Validate and update the slider
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image',
-            // other validations...
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $slider->title = $request->title;
-        if ($request->hasFile('image')) {
-            $slider->image = $request->image->store('sliders', 'public');
-        }
-        // other fields...
+        $slider = Slider::findOrFail($id);
 
-        $slider->save();
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($slider->image);
+            $imagePath = $request->file('image')->store('images/sliders', 'public');
+        } else {
+            $imagePath = $slider->image;
+        }
+
+        $slider->update([
+            'title' => $request->title,
+            'image' => $imagePath,
+        ]);
+
 
         return redirect()->route('slider.index')->with('success', 'Slider updated successfully.');
     }
@@ -80,15 +84,18 @@ class SliderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Slider $slider)
+    public function destroy(Slider $id)
     {
         try {
             // Delete the slider
             $slider = Slider::findOrFail($id);
+            Storage::disk('public')->delete($slider->image);
             $slider->delete();
 
             return redirect()->route('slider.index')->with('success', 'Slider deleted successfully.');
+
         } catch (\Exception $e) {
+
             return redirect()->route('slider.index')->with('error', 'Failed to delete slider.');
         }
 

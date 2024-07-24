@@ -17,6 +17,7 @@ class Withdrawal extends Model
         'currency',
         'user_id',
         'plan_id',
+        'wallet_address',
         'status',
     ];
 

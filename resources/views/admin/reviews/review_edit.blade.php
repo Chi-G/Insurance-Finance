@@ -42,7 +42,7 @@
                             <a href="{{ route('review.index') }}" class="btn btn-primary">All Reviews</a>
 
                             <div class="table-responsive mb-4 mt-4">
-                                <form action="{{ isset($review) ? route('review.update', $review->id) : route('review.store') }}" method="POST">
+                                <form action="{{ route('review.update', $review->id) }}" method="POST">
                                     @csrf
                                     @if(isset($review))
                                         @method('PUT')
@@ -65,9 +65,12 @@
                                         <textarea class="form-control" id="description" name="description" required>{{ isset($review) ? $review->description : old('description') }}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="image">Image</label>
-                                        <input type="file" name="image" id="image" value="{{ isset($review) ? $review->image : old('image') }}" class="form-control">
-                                        <img src="{{ asset('images/review/' . $review->image) }}" alt="{{ $review->title }}" width="100" class="mt-2">
+                                        <label for="image">Image:</label>
+                                        <input type="file" class="form-control" id="image" name="image">
+                                        <hr>
+                                        @if($review->image)
+                                            <img src="{{ asset('storage/' . $review->image) }}" alt="{{ $review->title }}" width="100">
+                                        @endif
                                     </div>
                                     <button type="submit" class="btn btn-primary">{{ isset($review) ? 'Update' : 'Save' }}</button>
                                 </form>

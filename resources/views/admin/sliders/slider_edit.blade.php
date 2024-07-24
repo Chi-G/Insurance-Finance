@@ -50,9 +50,12 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="image">Image</label>
-                                        <input type="file" name="image" id="image" class="form-control">
-                                        <img src="{{ asset('images/sliders/' . $slider->image) }}" alt="{{ $slider->title }}" width="100" class="mt-2">
+                                        <label for="image">Image:</label>
+                                        <input type="file" class="form-control" id="image" name="image">
+                                        <hr>
+                                        @if($slider->image)
+                                            <img src="{{ asset('storage/' . $slider->image) }}" alt="{{ $slider->title }}" width="100">
+                                        @endif
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>

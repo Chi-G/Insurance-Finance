@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Tether Elite Finance - User Portfolio</title>
     @include('user.include.css')
+    <link rel="stylesheet" type="text/css" href="{{asset('backend/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}">
 
     <style>
+        #demo_vertical::-ms-clear, #demo_vertical2::-ms-clear { display: none; }
+        input#demo_vertical { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
+        input#demo_vertical2 { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
+
         .progress-status {
             font-size: 10px;
             font-weight: bold;
@@ -78,10 +83,8 @@
                                                     <div class="info-detail-2">
                                                         <p>Subscription Status</p>
                                                         <p class="acc-amount">{{ ucfirst($user->subscription->status) }}</p>
-                                                    </div><div class="info-detail-2">
-                                                        <p>Withdrawal Status</p>
-                                                        <p class="acc-amount">Pending</p>
                                                     </div>
+
                                                     <div class="info-detail-3">
                                                         <table class="table table-bordered">
                                                             <thead>
@@ -115,10 +118,63 @@
                                                 @endif
                                             </div>
 
-                                            {{-- <div class="inv-action">
-                                                <a href="#" class="btn btn-outline-dark">Summary</a>
-                                                <a href="#" class="btn btn-danger">Transfer</a>
-                                            </div> --}}
+                                            <!-- Withdrawal Form Widget -->
+
+                                            <h5 class="">Withdrawal Information</h5>
+
+                                            <div class="info-detail-2">
+                                                <p>Withdrawal Status</p>
+                                                <p class="acc-amount">{{ auth()->user()->withdrawal_status ?? 'not-requested' }}</p>
+                                            </div>
+
+                                            <form class="form-horizontal" method="POST" action="{{ route('withdrawal.store') }}">
+                                                @csrf
+                                                <div class="form-group mb-4">
+                                                    <div class="widget-header">
+                                                        <h4>Name</h4>
+                                                    </div>
+                                                    <div class="input-group bootstrap-touchspin">
+                                                        <input class="form-control" name="name" value="{{ auth()->user()->name }}" readonly>
+                                                    </div>
+                                                    <div class="widget-header">
+                                                        <h4>Amount</h4>
+                                                    </div>
+                                                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                                        <input id="demo" type="text" value="0" name="amount" class="form-control">
+                                                    </div>
+
+                                                    <div class="widget-header">
+                                                        <h4>Wallet Address</h4>
+                                                    </div>
+                                                    <div class="input-group bootstrap-touchspin">
+                                                        <input class="form-control" name="wallet_address">
+                                                    </div>
+                                                    <div class="input-group bootstrap-touchspin">
+                                                        <button type="submit" class="mt-4 btn btn-primary" data-toggle="modal" data-target="#zoomupModal">
+                                                            Submit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            <!-- Modal -->
+                                            <div id="zoomupModal" class="modal animated zoomInUp custo-zoomInUp" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Successful</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p class="modal-text">Please sign up and verify your account via the email we send. Once verified, choose an investment plan and make your payment to the provided USDT (TRC-20) address. Then, email a screenshot of your transaction receipt to <a href="mailto:info@tetherelitefinance.com">info@tetherelitefinance.com</a> for swift approval.</p>
+                                                        </div>
+                                                        <div class="modal-footer md-button">
+                                                            <button style="background: #E6922E" class="btn" data-dismiss="modal"><i style="color:blanchedalmond" class="flaticon-cancel-12"></i> Okay</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +200,18 @@
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     @include('user.include.script')
+    <script src="{{asset('backend/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/bootstrap-touchspin/custom-bootstrap-touchspin.js')}}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+    <!-- With prefix -->
+    <script>
+        $("input[name='amount']").TouchSpin({
+            prefix: '$',
+            buttondown_class: "btn btn-classic btn-danger",
+            buttonup_class: "btn btn-classic btn-success"
+        });
+    </script>
 
 </body>
 </html>

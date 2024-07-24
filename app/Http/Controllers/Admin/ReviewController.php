@@ -29,7 +29,15 @@ class ReviewController extends Controller
             'description' => 'required',
         ]);
 
-        Review::create($request->all());
+        $imagePath = $request->file('image')->store('images/review', 'public');
+
+        Review::create([
+            'name' => $request->name,
+            'position' => $request->position,
+            'status' => $request->status,
+            'image' => $imagePath->image,
+            'description' => $request->description,
+        ]);
 
         return redirect()->route('review.index')->with('success', 'Review created successfully.');
     }
@@ -39,17 +47,24 @@ class ReviewController extends Controller
         return view('admin.reviews.review_edit', compact('review'));
     }
 
-    public function update(Request $request, Review $review)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
-            'image' => 'required|string|max:255',
-            'description' => 'required',
-        ]);
+        $advert = Review::findOrFail($id);
 
-        $review->update($request->all());
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($advert->image);
+            $imagePath = $request->file('image')->store('images/review', 'public');
+        } else {
+            $imagePath = $advert->image;
+        }
+
+        $advert->update([
+            'name' => $request->name,
+            'position' => $request->position,
+            'status' => $request->status,
+            'image' => $imagePath,
+            'description' => $request->description,
+        ]);
 
         return redirect()->route('review.index')->with('success', 'Review updated successfully.');
     }

@@ -71,6 +71,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/user/payment', [\App\Http\Controllers\SubscriptionController::class, 'payment'])->name('user.payment');
     Route::get('/user/withdrawal', [\App\Http\Controllers\SubscriptionController::class, 'withdrawal'])->name('user.withdrawal');
+    Route::post('/user/withdrawals', [\App\Http\Controllers\WithdrawalController::class, 'store'])->name('withdrawal.store');
 
     Route::get('/subscription/summary', [SubscriptionController::class, 'summary'])->name('subscription.summary');
     Route::get('/subscription/transfer', [SubscriptionController::class, 'transfer'])->name('subscription.transfer');

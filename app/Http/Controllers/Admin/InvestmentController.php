@@ -40,8 +40,9 @@ class InvestmentController extends Controller
         return view('admin.investment.investment_edit', compact('investment'));
     }
 
-    public function update(Request $request, Investment $investment)
+    public function update(Request $request, $id)
     {
+        // dd($request);
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -52,7 +53,18 @@ class InvestmentController extends Controller
             'average_month' => 'required|numeric',
         ]);
 
-        $investment->update($request->all());
+        $investment = Investment::findOrFail($id);
+
+        $investment->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'daily_percent' => $request->daily_percent,
+            'per_day' => $request->per_day,
+            'min_invest' => $request->min_invest,
+            'max_invest' => $request->max_invest,
+            'average_month' => $request->average_month,
+        ]);
+
         return redirect()->route('investment.index')->with('success', 'Investment updated successfully.');
     }
 

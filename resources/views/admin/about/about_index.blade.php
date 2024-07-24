@@ -67,9 +67,9 @@
                                             <td>{{ $about->experience_desc }}</td>
                                             <td>{{ $about->title2 }}</td>
                                             <td>{{ $about->title2_desc }}</td>
-                                            <td>{{ $about->created_at->format('d M Y') }}</td>
                                             <td><img src="{{ asset('storage/' . $about->image1) }}" alt="{{ $about->title1 }}" width="100"></td>
                                             <td><img src="{{ asset('storage/' . $about->image2) }}" alt="{{ $about->title2 }}" width="100"></td>
+                                            <td>{{ $about->created_at->format('d M Y') }}</td>
                                             <td class="text-center">
                                                 <ul class="table-controls">
                                                     <li>

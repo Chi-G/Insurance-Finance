@@ -59,7 +59,7 @@
                                             <td>{{ $review->name }}</td>
                                             <td>{{ $review->position }}</td>
                                             <td>{{ $review->status }}</td>
-                                            <td>{{ $review->image }}</td>
+                                            <td><img src="{{ asset('storage/' . $review->image) }}" alt="{{ $review->title }}" width="100"></td>
                                             <td>{{ $review->description }}</td>
                                             <td>{{ $review->created_at->format('d M Y') }}</td>
                                             <td class="text-center">
