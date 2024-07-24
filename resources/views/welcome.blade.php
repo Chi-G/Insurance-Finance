@@ -43,9 +43,9 @@
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <!-- Start Slider content -->
                                             <div class="slide-content text-center">
-                                                <h2 class="title2">Best secure investment plan</h2>
+                                                <h2 class="title2"></h2>
                                                 <div class="layer-1-3">
-                                                    <a href="{{route('register')}}" class="ready-btn left-btn" >Get started</a>
+                                                    {{-- <a href="{{route('register')}}" class="ready-btn left-btn" >Get started</a> --}}
                                                 </div>
                                             </div>
                                             <!-- End Slider content -->
@@ -68,9 +68,9 @@
                                          <div class="col-md-12 col-sm-12 col-xs-12">
                                             <!-- Start Slider content -->
                                             <div class="slide-content text-center">
-                                                <h2 class="title2">Best secure investment plan</h2>
+                                                <h2 class="title2"></h2>
                                                 <div class="layer-1-3">
-                                                    <a href="{{route('register')}}" class="ready-btn left-btn" >Get started</a>
+                                                    {{-- <a href="{{route('register')}}" class="ready-btn left-btn" >Get started</a> --}}
                                                 </div>
                                             </div>
                                             <!-- End Slider content -->
@@ -158,7 +158,7 @@
                                     <!-- Modal Button-->
                                     <div class="price-btn blue">
                                         <button style="background: #E6922E" type="button" class="btn btn-danger mb-2 mr-2" data-toggle="modal" data-target="#zoomupModal">
-                                            Deposite
+                                            Deposit
                                         </button>
                                     </div>
                                 </div>
@@ -360,7 +360,7 @@
                <div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="section-headline text-center">
-                            <h3>Deposite and withdrawals history</h3>
+                            <h3>Deposits and withdrawals history</h3>
                             <p>Help agencies to define their new business objectives and then create professional software.</p>
 						</div>
 					</div>

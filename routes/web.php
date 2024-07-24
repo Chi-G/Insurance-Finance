@@ -88,12 +88,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.dashboard');
         Route::resource('deposits', \App\Http\Controllers\DepositController::class);
         Route::resource('slider', \App\Http\Controllers\Admin\SliderController::class);
+        Route::resource('advert', \App\Http\Controllers\Admin\AdvertController::class);
         Route::resource('about', \App\Http\Controllers\Admin\AboutUsController::class);
         Route::resource('investment', \App\Http\Controllers\Admin\InvestmentController::class);
         Route::resource('team', \App\Http\Controllers\Admin\TeamController::class);
         Route::resource('faq', \App\Http\Controllers\Admin\FaqController::class);
         Route::resource('review', \App\Http\Controllers\Admin\ReviewController::class);
         Route::resource('blog', \App\Http\Controllers\Admin\BlogController::class);
+        Route::resource('admin_deposits', \App\Http\Controllers\Admin\AdminDepositController::class);
+        Route::resource('admin_withdrawals', \App\Http\Controllers\Admin\AdminWithdrawalController::class);
 
         Route::get('/subscriptions', [\App\Http\Controllers\Admin\AdminSubscriptionController::class, 'index'])->name('admin.subscriptions');
         Route::get('/subscriptions/{subscription}/edit', [\App\Http\Controllers\Admin\AdminSubscriptionController::class, 'edit'])->name('admin.subscriptions.edit');

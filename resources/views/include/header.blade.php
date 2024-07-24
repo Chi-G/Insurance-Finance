@@ -45,7 +45,11 @@
                         <div class="col-md-9 col-sm-9">
                             <div class="header-right-link">
                                 <!-- search option end -->
-                                <a class="s-menu" href="{{ route('login') }}">Login</a>
+                                @guest
+                                    <a class="s-menu" href="{{ route('login') }}">Login</a>
+                                @else
+                                    <a class="s-menu" href="{{ url('/') }}">Dashboard</a>
+                                @endguest
                             </div>
 
                             <!-- mainmenu start -->
@@ -53,28 +57,27 @@
                                 <div class="collapse navbar-collapse" id="navbar-example">
                                     <div class="main-menu">
                                         <ul class="nav navbar-nav navbar-right">
-                                            <li><a class="pages" href="{{ url('/') }}">Home</a>
-                                            </li>
+                                            <li><a class="pages" href="{{ url('/') }}">Home</a></li>
                                             <li><a href="{{ url('/about') }}">About us</a></li>
                                             <li><a href="{{ url('/investment') }}">Investment</a></li>
                                             <li><a class="pages" href="#">Pages</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="{{ url('/team') }}">team</a></li>
+                                                    <li><a href="{{ url('/team') }}">Team</a></li>
                                                     <li><a href="{{ url('/faq') }}">FAQ</a></li>
                                                     <li><a href="{{ url('/reviews') }}">Reviews</a></li>
-                                                    <li><a href="{{ route('login') }}">Login</a></li>
-                                                    <li><a href="{{ route('register') }}">Register</a></li>
                                                 </ul>
                                             </li>
-                                            {{-- <li><a class="pages" href="{{ url('/blogs') }}">Blog</a> --}}
-                                            </li>
-                                            <li><a href="{{ url('/contact') }}">contacts</a></li>
+                                            <li><a href="{{ url('/contact') }}">Contacts</a></li>
+                                            @guest
+                                                <li><a href="{{ route('register') }}">Register</a></li>
+                                            @endguest
                                         </ul>
                                     </div>
                                 </div>
                             </nav>
                             <!-- mainmenu end -->
                         </div>
+
                     </div>
                 </div>
             </div>
