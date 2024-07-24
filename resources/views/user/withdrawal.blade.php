@@ -7,6 +7,7 @@
     <title>Tether Elite Finance - User Portfolio</title>
     @include('user.include.css')
     <link rel="stylesheet" type="text/css" href="{{asset('backend/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}">
+    <link href="{{asset('backend/plugins/loaders/custom-loader.css')}}" rel="stylesheet" type="text/css" />
 
     <style>
          .t-rotate270 { -webkit-transform: rotate(270deg); transform:rotate(270deg) }
@@ -16,10 +17,29 @@
         input#demo_vertical2 { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
 
         .progress-status {
-            font-size: 10px;
+            font-size: 16px;
             font-weight: bold;
-            color: black;
+            color: white;
             margin-left: 10px;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -30px;
+            margin-top: -30px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 
@@ -135,22 +155,22 @@
 
                                                     switch ($status) {
                                                         case 'pending':
-                                                            $progress = 30;
+                                                            $progress = 100;
                                                             $percentage = '30%';
                                                             $progressBarClass = 'bg-warning';
                                                             break;
                                                         case 'contracting':
-                                                            $progress = 60;
+                                                            $progress = 100;
                                                             $percentage = '60%';
                                                             $progressBarClass = 'bg-info';
                                                             break;
                                                         case 'evaluating':
-                                                            $progress = 80;
+                                                            $progress = 100;
                                                             $percentage = '80%';
                                                             $progressBarClass = 'bg-primary';
                                                             break;
                                                         case 'taking-action':
-                                                            $progress = 90;
+                                                            $progress = 100;
                                                             $percentage = '90%';
                                                             $progressBarClass = 'bg-success';
                                                             break;
@@ -160,9 +180,9 @@
                                                             $progressBarClass = 'bg-success';
                                                             break;
                                                         default:
-                                                            $progress = 20;
+                                                            $progress = 100;
                                                             $percentage = '20';
-                                                            $progressBarClass = 'bg-secondary';
+                                                            $progressBarClass = 'bg-warning';
                                                             break;
                                                     }
                                                 @endphp
@@ -172,7 +192,7 @@
                                                     <div class="progress br-30">
                                                         <div class="progress-bar {{ $progressBarClass }}" role="progressbar" style="width: {{ $progress }}%" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
                                                             <div class="progress-title">
-                                                                <span>{{ $statusString }}: {{ $percentage }}</span>
+                                                                <span class="progress-status">{{ $statusString }}: {{ $percentage }}%</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -181,7 +201,7 @@
                                                 <p class="acc-amount">{{ $status }}</p>
                                             </div>
 
-                                            <form class="form-horizontal" method="POST" action="{{ route('withdrawal.store') }}">
+                                            <form id="withdrawal-form" action="{{ route('withdrawal.store') }}" class="form-horizontal">
                                                 @csrf
                                                 <div class="form-group mb-4">
                                                     <div class="widget-header">
@@ -194,36 +214,40 @@
                                                         <h4>Amount</h4>
                                                     </div>
                                                     <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                                                        <input id="demo" type="text" value="0" name="amount" class="form-control">
+                                                        <input id="demo" type="text" name="amount" class="form-control" required>
                                                     </div>
-
                                                     <div class="widget-header">
                                                         <h4>Wallet Address</h4>
                                                     </div>
                                                     <div class="input-group bootstrap-touchspin">
-                                                        <input class="form-control" name="wallet_address">
+                                                        <input class="form-control" name="wallet_address" required>
                                                     </div>
                                                     <div class="input-group bootstrap-touchspin">
-                                                        <button type="submit" class="mt-4 btn btn-primary" data-toggle="modal" data-target="#zoomupModal">
+                                                        <button type="submit" class="mt-4 btn btn-primary">
                                                             Submit
                                                         </button>
                                                     </div>
                                                 </div>
+
+                                                <!-- Loader element -->
+                                                <div id="loader" class="loader multi-loader mx-auto" style="display: none;"></div>
                                             </form>
 
                                             <!-- Modal -->
-                                            <div id="zoomupModal" class="modal animated zoomInUp custo-zoomInUp" role="dialog">
-                                                <div class="modal-dialog">
-                                                    <!-- Modal content-->
+                                            <div class="modal fade" id="zoomupModal" tabindex="-1" role="dialog" aria-labelledby="zoomupModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Successful</h5>
+                                                            <h5 class="modal-title" id="zoomupModalLabel">Submission Successful</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p class="modal-text">Please sign up and verify your account via the email we send. Once verified, choose an investment plan and make your payment to the provided USDT (TRC-20) address. Then, email a screenshot of your transaction receipt to <a href="mailto:info@tetherelitefinance.com">info@tetherelitefinance.com</a> for swift approval.</p>
+                                                            Thanks for reaching out, we'll get in touch.
                                                         </div>
-                                                        <div class="modal-footer md-button">
-                                                            <button style="background: #E6922E" class="btn" data-dismiss="modal"><i style="color:blanchedalmond" class="flaticon-cancel-12"></i> Okay</button>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -267,6 +291,45 @@
             buttonup_class: "btn btn-classic btn-success"
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('withdrawal-form');
+            const loader = document.getElementById('loader');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+                loader.style.display = 'block'; // Show the loader
+
+                const formData = new FormData(form);
+
+                fetch('{{ route('withdrawal.store') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loader.style.display = 'none'; // Hide the loader
+                    if (data.success) {
+                        // Show the modal with the message
+                        $('#zoomupModal').modal('show');
+                    } else {
+                        // Handle error
+                        alert('An error occurred.');
+                    }
+                })
+                .catch(error => {
+                    loader.style.display = 'none'; // Hide the loader
+                    alert('An error occurred.');
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+
 
 </body>
 </html>

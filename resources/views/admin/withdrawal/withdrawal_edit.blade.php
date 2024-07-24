@@ -61,6 +61,20 @@
                                         <label for="currency">Currency:</label>
                                         <input type="text" class="form-control" id="currency" name="currency" value="{{ $withdrawal->currency }}" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="withdrawal_status">Withdrawal Status</label>
+                                        <select id="withdrawal_status" name="status" class="form-control" required>
+                                            <option value="Not-Requested" {{ $withdrawal->status == 'Not-Requested' ? 'selected' : '' }}>Not-Requested</option>
+                                            <option value="Pending" {{ $withdrawal->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="Contracting" {{ $withdrawal->status == 'Contracting' ? 'selected' : '' }}>Contracting</option>
+                                            <option value="Evaluating" {{ $withdrawal->status == 'Evaluating' ? 'selected' : '' }}>Evaluating</option>
+                                            <option value="Taking-action" {{ $withdrawal->status == 'processing' ? 'selected' : '' }}>Taking-action</option>
+                                            <option value="Completed" {{ $withdrawal->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+                                        </select>
+                                        @error('status')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>
                             </div>

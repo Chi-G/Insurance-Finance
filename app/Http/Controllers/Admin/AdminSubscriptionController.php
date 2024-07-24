@@ -28,7 +28,7 @@ class AdminSubscriptionController extends Controller
         return view('admin.portfolio.portfolio_edit', compact('subscription', 'users', 'plans', 'withdrawals'));
     }
 
-    public function update(Request $request, Subscription $subscription, Withdrawal $withdrawals)
+    public function update(Request $request, Subscription $subscription, Withdrawal $id)
     {
         $request->validate([
             'plan_id' => 'required|exists:plans,id',
@@ -44,15 +44,15 @@ class AdminSubscriptionController extends Controller
         ]);
 
         // Update withdrawal if provided
-        if ($request->withdrawal_id) {
-            $withdrawal = Withdrawal::find($request->withdrawal_id);
-            if ($withdrawal) {
-                $withdrawal->update([
-                    'amount' => $request->withdrawal_amount,
-                    'status' => $request->withdrawal_status,
-                ]);
-            }
-        }
+        // if ($request->withdrawal_id) {
+        //     $withdrawal = Withdrawal::find($request->id);
+        //     if ($withdrawal) {
+        //         $withdrawal->update([
+        //             'amount' => $request->amount,
+        //             'status' => $request->status,
+        //         ]);
+        //     }
+        // }
 
         return redirect()->route('admin.subscriptions')->with('success', 'Subscription updated successfully.');
     }

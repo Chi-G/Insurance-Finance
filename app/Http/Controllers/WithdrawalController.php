@@ -31,6 +31,9 @@ class WithdrawalController extends Controller
             'wallet_address' => 'required|string',
         ]);
 
+        // Simulate processing time (5 seconds)
+        sleep(2);
+
         $user = auth()->user();
 
         $withdrawal = Withdrawal::create([
@@ -47,6 +50,9 @@ class WithdrawalController extends Controller
         // Send email to user
         // Mail::to($user->email)->send(new \App\Mail\WithdrawalRequest($withdrawal));
 
-        return redirect()->route('user.withdrawal')->with('success', 'Withdrawal request submitted successfully.');
+        // return redirect()->route('user.withdrawal')->with('success', 'Withdrawal request submitted successfully.');
+
+         // Return a JSON response
+         return response()->json(['success' => true]);
     }
 }

@@ -47,6 +47,7 @@
                                             <th>Name</th>
                                             <th>Amount</th>
                                             <th>Currency</th>
+                                            <th>Withdrawal Status</th>
                                             <th>Date</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -57,6 +58,18 @@
                                             <td>{{ $withdrawal->name }}</td>
                                             <td>{{ $withdrawal->amount }}</td>
                                             <td>{{ $withdrawal->currency }}</td>
+                                            <td>
+                                                <div class="badge badge-pill
+                                                    @if($withdrawal->status === 'Not-Requested') badge-danger
+                                                    @elseif($withdrawal->status === 'Pending') badge-warning
+                                                    @elseif($withdrawal->status === 'Contracting') badge-info
+                                                    @elseif($withdrawal->status === 'Evaluating') badge-primary
+                                                    @elseif($withdrawal->status === 'Taking-action') badge-secondary
+                                                    @elseif($withdrawal->status === 'Completed') badge-success
+                                                    @endif">
+                                                    {{ ucfirst($withdrawal->status) }}
+                                                </div>
+                                            </td>
                                             <td>{{ $withdrawal->date->format('d M Y') }}</td>
                                             <td class="text-center">
                                                 <ul class="table-controls">
