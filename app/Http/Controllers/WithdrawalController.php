@@ -28,10 +28,11 @@ class WithdrawalController extends Controller
     public function store(Request $request)
     {
         dd($request);
-        $request->validate([
-            'amount' => 'required|numeric|min:0',
-            'wallet_address' => 'required|string',
-        ]);
+
+        // $request->validate([
+        //     'amount' => 'required|numeric|min:0',
+        //     'wallet_address' => 'required|string',
+        // ]);
 
         // Simulate processing time (5 seconds)
         // sleep(2);

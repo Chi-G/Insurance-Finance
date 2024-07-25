@@ -204,7 +204,7 @@
                                                 <p class="acc-amount">{{ $withdrawalStatus  }}</p>
                                             </div>
 
-                                            <form id="withdrawal-form" action="{{ route('withdrawal.store') }}" class="form-horizontal">
+                                            <form id="withdrawal-form" action="{{ route('withdrawal.store') }}" method="POST" class="form-horizontal">
                                                 @csrf
                                                 <div class="form-group mb-4">
                                                     <div class="widget-header">
@@ -216,14 +216,14 @@
                                                     <div class="widget-header">
                                                         <h4>Amount</h4>
                                                     </div>
-                                                    <div class="input-group bootstrap-touchspin bootstrap-touchspin">
-                                                        <input id="demo" type="text" name="amount" class="form-control" required>
+                                                    <div class="input-group bootstrap-touchspin">
+                                                        <input id="amount" type="text" name="amount" class="form-control" required>
                                                     </div>
                                                     <div class="widget-header">
                                                         <h4>Wallet Address</h4>
                                                     </div>
                                                     <div class="input-group bootstrap-touchspin">
-                                                        <input class="form-control" name="wallet_address" required>
+                                                        <input id="wallet_address" class="form-control" name="wallet_address" required>
                                                     </div>
                                                     <div class="input-group bootstrap-touchspin">
                                                         <button type="submit" class="mt-4 btn btn-primary">
@@ -286,91 +286,45 @@
     <script src="{{asset('backend/plugins/bootstrap-touchspin/custom-bootstrap-touchspin.js')}}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
-    <!-- With prefix -->
     <script>
-        // $("input[name='amount']").TouchSpin({
-        //     prefix: '$',
-        //     buttondown_class: "btn btn-classic btn-danger",
-        //     buttonup_class: "btn btn-classic btn-success"
-        // });
-    </script>
+        document.getElementById('withdrawal-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-    <script>
-        document.getElementById("withdrawal-form").addEventListener("submit", function(e) {
-            e.preventDefault(); // Prevent default form submission
+            // Show loader
+            document.getElementById('loader').style.display = 'block';
 
-            let form = e.target;
-            let formData = new FormData(form);
-
-            // Show loader animation
-            let loader = document.getElementById("loader");
-            loader.style.display = "block";
-
-            // Wait for 3 seconds before submitting the form
+            // Simulate processing delay
             setTimeout(function() {
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST", form.action, true);
-                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                // Hide loader
+                document.getElementById('loader').style.display = 'none';
 
-                xhr.onload = function() {
-                    let response = JSON.parse(this.responseText);
-                    if (response.success) {
-                        // Hide loader
-                        loader.style.display = "none";
-                        // Show modal
+                // Get form data
+                var formData = new FormData(document.getElementById('withdrawal-form'));
+
+                // Submit form using AJAX
+                fetch("{{ route('withdrawal.store') }}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Show success modal
                         $('#zoomupModal').modal('show');
                     } else {
-                        // Hide loader
-                        loader.style.display = "none";
-                        alert(response.message);
+                        // Handle error case
+                        alert(data.message);
                     }
-                };
-
-                xhr.onerror = function() {
-                    // Hide loader
-                    loader.style.display = "none";
-                    alert('An error occurred during the transaction');
-                };
-
-                xhr.send(formData);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             }, 3000); // 3 seconds delay
-});
-
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     const form = document.getElementById('withdrawal-form');
-        //     const loader = document.getElementById('loader');
-
-        //     form.addEventListener('submit', function (event) {
-        //         event.preventDefault(); // Prevent the default form submission
-        //         loader.style.display = 'block'; // Show the loader
-
-        //         const formData = new FormData(form);
-
-        //         fetch('{{ route('withdrawal.store') }}', {
-        //             method: 'POST',
-        //             headers: {
-        //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        //             },
-        //             body: formData
-        //         })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             loader.style.display = 'none'; // Hide the loader
-        //             if (data.success) {
-        //                 // Show the modal with the message
-        //                 $('#zoomupModal').modal('show');
-        //             } else {
-        //                 // Handle error
-        //                 alert('An error occurred.');
-        //             }
-        //         })
-        //         .catch(error => {
-        //             loader.style.display = 'none'; // Hide the loader
-        //             alert('An error occurred.');
-        //             console.error('Error:', error);
-        //         });
-        //     });
-        // });
+        });
     </script>
 
 
