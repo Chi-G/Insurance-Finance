@@ -1,15 +1,15 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<head>
-		<meta charset="utf-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Home | Tether Elite Finance</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Home | Tether Elite Finance</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!-- favicon -->
-		@include('include.css')
+        <!-- favicon -->
+        @include('include.css')
 
         <!--  CUSTOM MODAL FILE  -->
         <link href="{{asset('backend/assets/css/components/custom-modal.css')}}" rel="stylesheet" type="text/css" />
@@ -20,10 +20,8 @@
 
         <!-- Include CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-	</head>
-		<body>
-
+    </head>
+	<body>
         <div id="preloader"></div>
         @include('include.header')
         <!-- header end -->
@@ -33,7 +31,7 @@
             <div class="intro-carousel">
                 <div class="intro-content">
                     <div class="slider-images">
-                        <img src="{{asset('frontend/img/slider/h1.jpg')}}" alt="">
+                        <img src="{{asset('frontend/img/sliders/h1.jpg')}}" alt="">
                     </div>
                     <div class="slider-content">
                         <div class="display-table">
@@ -58,7 +56,7 @@
                 </div>
                 <div class="intro-content">
                     <div class="slider-images">
-                        <img src="{{asset('frontend/img/slider/h2.jpg')}}" alt="">
+                        <img src="{{asset('frontend/img/sliders/h2.jpg')}}" alt="">
                     </div>
                     <div class="slider-content">
                         <div class="display-table">

@@ -4,25 +4,29 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Withdrawal;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
 class AdminWithdrawalController extends Controller
 {
     public function index() {
-        $withdrawals = Withdrawal::all();
+        // $withdrawals = Withdrawal::all();
+        $withdrawals = Withdrawal::with('user')->get();
         return view('admin.withdrawal.withdrawal_index', compact('withdrawals'));
     }
 
     public function create()
     {
-        return view('admin.withdrawal.withdrawal_create');
+        $users = User::all();
+        return view('admin.withdrawal.withdrawal_create', compact('users'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            // 'name' => 'required',
+            'user_id' => 'required|exists:users,id',
             'date' => 'required|date',
             'amount' => 'required|numeric',
             'currency' => 'required',
@@ -34,13 +38,15 @@ class AdminWithdrawalController extends Controller
 
     public function edit($id) {
         $withdrawal = Withdrawal::findOrFail($id);
-        return view('admin.withdrawal.withdrawal_edit', compact('withdrawal'));
+        $users = User::all();
+        return view('admin.withdrawal.withdrawal_edit', compact('withdrawal', 'users'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            // 'name' => 'required',
+            'user_id' => 'required|exists:users,id',
             'date' => 'required|date',
             'amount' => 'required|numeric',
             'currency' => 'required',

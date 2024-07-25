@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Withdrawal;
+use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -26,15 +27,21 @@ class WithdrawalController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
         $request->validate([
             'amount' => 'required|numeric|min:0',
             'wallet_address' => 'required|string',
         ]);
 
         // Simulate processing time (5 seconds)
-        sleep(2);
+        // sleep(2);
 
         $user = auth()->user();
+        $balance = $user->subscription->transactions->sum('profit_per_month') ?? 0;
+
+        if ($request->amount > $balance) {
+            return response()->json(['success' => false, 'message' => 'Insufficient balance']);
+        }
 
         $withdrawal = Withdrawal::create([
             'user_id'=> $user->id,
@@ -45,7 +52,15 @@ class WithdrawalController extends Controller
             'date' => Carbon::now(),
         ]);
 
-        dd($withdrawal);
+        // Deduct the withdrawn amount from the user's balance
+        $user->subscription->transactions()->create([
+            'subscription_id' => $user->subscription->id,
+            'user_id' => $user->id,
+            'plan_id' => $user->subscription->plan_id,
+            'amount' => -$request->amount,
+            'percentage_rate' => 0,
+            'profit_per_month' => -$request->amount,
+        ]);
 
         // Send email to user
         // Mail::to($user->email)->send(new \App\Mail\WithdrawalRequest($withdrawal));

@@ -87,11 +87,15 @@
                                         <div class="invoice-box">
                                             <div class="acc-total-info">
                                                 <h5>Balance</h5>
-                                                @if ($user->subscription && $user->subscription->transactions->isNotEmpty())
+                                                @php
+                                                    $balance = $user->subscription->transactions->sum('profit_per_month') ?? 0;
+                                                @endphp
+                                                <p class="acc-amount">${{ number_format($balance, 2) }}</p>
+                                                {{-- @if ($user->subscription && $user->subscription->transactions->isNotEmpty())
                                                     <p class="acc-amount"> ${{ number_format($user->subscription->transactions->first()->profit_per_month ?? 0, 2) }} </p>
                                                 @else
                                                     <p class="acc-amount">N/A</p>
-                                                @endif
+                                                @endif --}}
                                             </div>
 
                                             <hr>
@@ -147,13 +151,12 @@
                                                 <p>Withdrawal Status</p>
 
                                                 @php
-                                                    $status = auth()->user()->status ?? 'not-requested';
+                                                    $withdrawalStatus = $user->withdrawals->last()->status ?? 'not-requested';
                                                     $progress = 20;
                                                     $percentage = '20%';
-                                                    $statusString = 'withdrawal ' . $status;
                                                     $progressBarClass = 'bg-secondary'; // Default color
 
-                                                    switch ($status) {
+                                                    switch ($withdrawalStatus) {
                                                         case 'pending':
                                                             $progress = 100;
                                                             $percentage = '30%';
@@ -180,8 +183,8 @@
                                                             $progressBarClass = 'bg-success';
                                                             break;
                                                         default:
-                                                            $progress = 100;
-                                                            $percentage = '20';
+                                                            $progress = 20;
+                                                            $percentage = '20%';
                                                             $progressBarClass = 'bg-warning';
                                                             break;
                                                     }
@@ -192,13 +195,13 @@
                                                     <div class="progress br-30">
                                                         <div class="progress-bar {{ $progressBarClass }}" role="progressbar" style="width: {{ $progress }}%" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
                                                             <div class="progress-title">
-                                                                <span class="progress-status">{{ $statusString }}: {{ $percentage }}%</span>
+                                                                <span class="progress-status">{{ $withdrawalStatus  }}: {{ $percentage }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </p>
 
-                                                <p class="acc-amount">{{ $status }}</p>
+                                                <p class="acc-amount">{{ $withdrawalStatus  }}</p>
                                             </div>
 
                                             <form id="withdrawal-form" action="{{ route('withdrawal.store') }}" class="form-horizontal">
@@ -213,7 +216,7 @@
                                                     <div class="widget-header">
                                                         <h4>Amount</h4>
                                                     </div>
-                                                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                                    <div class="input-group bootstrap-touchspin bootstrap-touchspin">
                                                         <input id="demo" type="text" name="amount" class="form-control" required>
                                                     </div>
                                                     <div class="widget-header">
@@ -285,49 +288,89 @@
 
     <!-- With prefix -->
     <script>
-        $("input[name='amount']").TouchSpin({
-            prefix: '$',
-            buttondown_class: "btn btn-classic btn-danger",
-            buttonup_class: "btn btn-classic btn-success"
-        });
+        // $("input[name='amount']").TouchSpin({
+        //     prefix: '$',
+        //     buttondown_class: "btn btn-classic btn-danger",
+        //     buttonup_class: "btn btn-classic btn-success"
+        // });
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('withdrawal-form');
-            const loader = document.getElementById('loader');
+        document.getElementById("withdrawal-form").addEventListener("submit", function(e) {
+            e.preventDefault(); // Prevent default form submission
 
-            form.addEventListener('submit', function (event) {
-                event.preventDefault(); // Prevent the default form submission
-                loader.style.display = 'block'; // Show the loader
+            let form = e.target;
+            let formData = new FormData(form);
 
-                const formData = new FormData(form);
+            // Show loader animation
+            let loader = document.getElementById("loader");
+            loader.style.display = "block";
 
-                fetch('{{ route('withdrawal.store') }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    loader.style.display = 'none'; // Hide the loader
-                    if (data.success) {
-                        // Show the modal with the message
+            // Wait for 3 seconds before submitting the form
+            setTimeout(function() {
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", form.action, true);
+                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+                xhr.onload = function() {
+                    let response = JSON.parse(this.responseText);
+                    if (response.success) {
+                        // Hide loader
+                        loader.style.display = "none";
+                        // Show modal
                         $('#zoomupModal').modal('show');
                     } else {
-                        // Handle error
-                        alert('An error occurred.');
+                        // Hide loader
+                        loader.style.display = "none";
+                        alert(response.message);
                     }
-                })
-                .catch(error => {
-                    loader.style.display = 'none'; // Hide the loader
-                    alert('An error occurred.');
-                    console.error('Error:', error);
-                });
-            });
-        });
+                };
+
+                xhr.onerror = function() {
+                    // Hide loader
+                    loader.style.display = "none";
+                    alert('An error occurred during the transaction');
+                };
+
+                xhr.send(formData);
+            }, 3000); // 3 seconds delay
+});
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const form = document.getElementById('withdrawal-form');
+        //     const loader = document.getElementById('loader');
+
+        //     form.addEventListener('submit', function (event) {
+        //         event.preventDefault(); // Prevent the default form submission
+        //         loader.style.display = 'block'; // Show the loader
+
+        //         const formData = new FormData(form);
+
+        //         fetch('{{ route('withdrawal.store') }}', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        //             },
+        //             body: formData
+        //         })
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             loader.style.display = 'none'; // Hide the loader
+        //             if (data.success) {
+        //                 // Show the modal with the message
+        //                 $('#zoomupModal').modal('show');
+        //             } else {
+        //                 // Handle error
+        //                 alert('An error occurred.');
+        //             }
+        //         })
+        //         .catch(error => {
+        //             loader.style.display = 'none'; // Hide the loader
+        //             alert('An error occurred.');
+        //             console.error('Error:', error);
+        //         });
+        //     });
+        // });
     </script>
 
 

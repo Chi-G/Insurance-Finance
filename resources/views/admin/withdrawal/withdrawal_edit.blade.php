@@ -38,7 +38,7 @@
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
 
-                            {{-- <a href="{{ route('about.index') }}" class="btn btn-primary">All Abouts</a> --}}
+                            <a href="{{ route('admin_withdrawals.index') }}" class="btn btn-primary">All User Withdrawals</a>
 
                             <div class="table-responsive mb-4 mt-4">
                                 <h2>Edit Withdrawal</h2>
@@ -47,7 +47,15 @@
                                     @method('PUT')
                                     <div class="form-group">
                                         <label for="name">Name:</label>
-                                        <input type="text" class="form-control" id="name" name="name" value="{{ $withdrawal->name }}" required>
+                                        {{-- <input type="text" class="form-control" id="name" name="name" value="{{ $withdrawal->name }}" required> --}}
+                                        <select id="user_id" name="user_id" class="form-control" {{ $withdrawal->user ? 'disabled' : '' }}>
+                                            @foreach($users as $user)
+                                                <option value="{{ $user->id }}" {{ $withdrawal->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if($withdrawal->user)
+                                            <input type="hidden" name="user_id" value="{{ $withdrawal->user_id }}">
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="date">Date:</label>

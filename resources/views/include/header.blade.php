@@ -33,10 +33,10 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="logo">
                                 <!-- Brand -->
-                                <a class="navbar-brand page-scroll white-logo" href="index.html">
+                                <a class="navbar-brand page-scroll white-logo" href="#">
                                     <img src="{{asset('frontend/img/logo/logo3.png')}}" alt="">
                                 </a>
-                                <a class="navbar-brand page-scroll black-logo" href="index.html">
+                                <a class="navbar-brand page-scroll black-logo" href="#">
                                     <img src="{{asset('frontend/img/logo/logo.png')}}" alt="">
                                 </a>
                             </div>

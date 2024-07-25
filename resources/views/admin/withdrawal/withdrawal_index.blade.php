@@ -55,7 +55,7 @@
                                     <tbody>
                                         @foreach($withdrawals as $withdrawal)
                                         <tr>
-                                            <td>{{ $withdrawal->name }}</td>
+                                            <td>{{ $withdrawal->user ? $withdrawal->user->name : $withdrawal->name }}</td>
                                             <td>{{ $withdrawal->amount }}</td>
                                             <td>{{ $withdrawal->currency }}</td>
                                             <td>

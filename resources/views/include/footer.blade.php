@@ -6,7 +6,7 @@
                     <div class="footer-content logo-footer">
                         <div class="footer-head">
                             <div class="footer-logo">
-                                <a class="footer-black-logo" href="#"><img src="img/logo/logo.png" alt=""></a>
+                                <a class="footer-black-logo" href="#"><img src="{{asset('frontend/img/logo/logo.png')}}" alt=""></a>
                             </div>
                             <p>Looking for expert financial guidance and high-yield investment opportunities? At TetherEliteFinance, we offer advanced trading strategies and personalized support to help you achieve your financial goals with confidence.</p>
                             <div class="subs-feilds">
