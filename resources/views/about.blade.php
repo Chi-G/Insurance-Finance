@@ -45,11 +45,6 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="about-image">
                             <img src="{{asset('frontend/img/about/ab.jpg')}}" alt="">
-                            <div class="video-content">
-								<a href="https://www.youtube.com/watch?v=O33uuBh6nXA" class="video-play vid-zone">
-									<i class="fa fa-play"></i>
-								</a>
-							</div>
                         </div>
                     </div>
                     <!-- column end -->

@@ -35,6 +35,12 @@
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+
+        .transactions-widget-content, .recent-activities-widget-content {
+            max-height: 400px; /* Adjust as needed */
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
     </style>
 
 </head>
@@ -75,11 +81,15 @@
                                 <div class="invoice-box">
                                     <div class="acc-total-info">
                                         <h5>Balance</h5>
-                                        @if ($user->subscription && $user->subscription->transactions->isNotEmpty())
+                                        @php
+                                            $balance = $user->subscription->transactions->sum('profit_per_month') ?? 0;
+                                        @endphp
+                                            <p class="acc-amount">${{ number_format($balance, 2) }}</p>
+                                        {{-- @if ($user->subscription && $user->subscription->transactions->isNotEmpty())
                                             <p class="acc-amount"> ${{ number_format($user->subscription->transactions->first()->profit_per_month ?? 0, 2) }} </p>
                                         @else
                                             <p class="acc-amount">N/A</p>
-                                        @endif
+                                        @endif --}}
                                     </div>
 
                                     <hr>
@@ -127,10 +137,10 @@
                                         @endif
                                     </div>
 
-                                    {{-- <div class="inv-action">
+                                    <div class="inv-action">
                                         <a href="#" class="btn btn-outline-dark">Summary</a>
-                                        <a href="#" class="btn btn-danger">Transfer</a>
-                                    </div> --}}
+                                        {{-- <a href="#" class="btn btn-danger">Transfer</a> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +153,7 @@
                                 <h5 class="">Transactions</h5>
                             </div>
 
-                            <div class="widget-content">
+                            <div class="widget-content transactions-widget-content">
                                 @if($transactions->isEmpty())
                                     <p class="acc-amount">N/A</p>
                                     <p>No transactions found.</p>
@@ -182,7 +192,7 @@
 
                     <!-- Recent Activities -->
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-                        <div class="widget widget-activity-four">
+                        <div class="widget widget-activity-four recent-activities-widget-content">
                             <div class="widget-heading">
                                 <h5 class="">Recent Activities</h5>
                             </div>

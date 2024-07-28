@@ -37,6 +37,9 @@
                     <li>
                         <a href="{{route('advert.index')}}"> Advert Widget </a>
                     </li>
+                    <li>
+                        <a href="{{route('faqcontact.index')}}"> User Faq Contact </a>
+                    </li>
                 </ul>
             </li>
 

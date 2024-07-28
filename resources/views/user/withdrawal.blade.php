@@ -41,6 +41,31 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .amount-style {
+            background-color: #e0f7fa; /* Light cyan background */
+            color: #00796b; /* Dark teal text color */
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .amount-style::before {
+            content: '$'; /* Dollar sign as a pseudo-element */
+            margin-right: 5px; /* Space between dollar sign and amount */
+        }
+
+        .wallet-address-style {
+            background-color: #f1f8e9; /* Light green background */
+            color: #388e3c; /* Dark green text color */
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-family: monospace; /* Monospaced font for a code-like appearance */
+            word-break: break-all; /* Break long addresses to avoid overflow */
+            display: inline-block;
+        }
     </style>
 
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -91,13 +116,7 @@
                                                     $balance = $user->subscription->transactions->sum('profit_per_month') ?? 0;
                                                 @endphp
                                                 <p class="acc-amount">${{ number_format($balance, 2) }}</p>
-                                                {{-- @if ($user->subscription && $user->subscription->transactions->isNotEmpty())
-                                                    <p class="acc-amount"> ${{ number_format($user->subscription->transactions->first()->profit_per_month ?? 0, 2) }} </p>
-                                                @else
-                                                    <p class="acc-amount">N/A</p>
-                                                @endif --}}
                                             </div>
-
                                             <hr>
 
                                             <div class="inv-detail">
@@ -152,7 +171,7 @@
 
                                                 @php
                                                     $withdrawalStatus = $user->withdrawals->last()->status ?? 'not-requested';
-                                                    $progress = 20;
+                                                    $progress = 100;
                                                     $percentage = '20%';
                                                     $progressBarClass = 'bg-secondary'; // Default color
 
@@ -175,7 +194,7 @@
                                                         case 'taking-action':
                                                             $progress = 100;
                                                             $percentage = '90%';
-                                                            $progressBarClass = 'bg-success';
+                                                            $progressBarClass = 'bg-secondary';
                                                             break;
                                                         case 'completed':
                                                             $progress = 100;
@@ -183,9 +202,9 @@
                                                             $progressBarClass = 'bg-success';
                                                             break;
                                                         default:
-                                                            $progress = 20;
+                                                            $progress = 100;
                                                             $percentage = '20%';
-                                                            $progressBarClass = 'bg-warning';
+                                                            $progressBarClass = 'bg-success';
                                                             break;
                                                     }
                                                 @endphp
@@ -236,7 +255,7 @@
                                                 <div id="loader" class="loader multi-loader mx-auto" style="display: none;"></div>
                                             </form>
 
-                                            <!-- Modal -->
+                                            <!-- Modal Success -->
                                             <div class="modal fade" id="zoomupModal" tabindex="-1" role="dialog" aria-labelledby="zoomupModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -247,7 +266,30 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Thanks for reaching out, we'll get in touch.
+                                                            <p>Thank you for your withdrawal request. Here are the details of your submission:</p>
+                                                            <p><strong>Amount:</strong> <span id="modal-amount" class="amount-style">$<span class="amount-value">100.00</span></span></p>
+                                                            <p><strong>Wallet Address:</strong> <span id="modal-wallet-address" class="wallet-address-style">1234abcd5678efgh</span></p>
+                                                            <p>Your request is being processed. We will notify you once it has been completed.</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal Error -->
+                                            <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="errorModalLabel">Submission Failed</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>There was an error processing your request. Please try again later.</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -313,11 +355,18 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        // Populate modal with form data
+                        document.getElementById('modal-amount').textContent = formData.get('amount');
+                        document.getElementById('modal-wallet-address').textContent = formData.get('wallet_address');
+
                         // Show success modal
                         $('#zoomupModal').modal('show');
+                         // Clear the input fields
+                        document.getElementById('amount').value = '';
+                        document.getElementById('wallet_address').value = '';
                     } else {
                         // Handle error case
-                        alert(data.message);
+                        $('#errorModal').modal('show');
                     }
                 })
                 .catch(error => {
@@ -325,8 +374,47 @@
                 });
             }, 3000); // 3 seconds delay
         });
+
+        // Check if there are success or error messages in the session
+        @if(session('success'))
+            $(document).ready(function() {
+                $('#zoomupModal').modal('show');
+            });
+        @endif
+
+        @if(session('error'))
+            $(document).ready(function() {
+                $('#errorModal').modal('show');
+            });
+        @endif
     </script>
 
+    <script>
+        $(document).ready(function() {
+            // Display success or error messages from the session
+            @if(session('success'))
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000,
+                padding: '2em'
+            });
+            @endif
+
+            @if(session('error'))
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: '{{ session('error') }}',
+                showConfirmButton: false,
+                timer: 3000,
+                padding: '2em'
+            });
+            @endif
+        });
+    </script>
 
 </body>
 </html>

@@ -98,6 +98,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('blog', \App\Http\Controllers\Admin\BlogController::class);
         Route::resource('admin_deposits', \App\Http\Controllers\Admin\AdminDepositController::class);
         Route::resource('admin_withdrawals', \App\Http\Controllers\Admin\AdminWithdrawalController::class);
+        Route::resource('faqcontact', \App\Http\Controllers\Admin\FaqContactController::class)->only(['index', 'destroy']);
 
         Route::get('/subscriptions', [\App\Http\Controllers\Admin\AdminSubscriptionController::class, 'index'])->name('admin.subscriptions');
         Route::get('/subscriptions/{subscription}/edit', [\App\Http\Controllers\Admin\AdminSubscriptionController::class, 'edit'])->name('admin.subscriptions.edit');

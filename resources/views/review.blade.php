@@ -57,10 +57,10 @@
                                         <p>Tether Elite’s exceptional service has transformed my business. They offer reliable and innovative solutions tailored to my needs.</p>
                                     </div>
                                     <div class="testi-img">
-                                        <img src="{{asset('frontend/img/review/1.jpg')}}" alt="Reviewer 1">
+                                        {{-- <img src="{{asset('frontend/img/review/1.jpg')}}" alt="Reviewer 1"> --}}
                                         <div class="guest-details">
                                             <h4>Alex Johnson</h4>
-                                            <span class="guest-rev">Clients - <a href="#">Startup Founder</a></span>
+                                            <span class="guest-rev">Elite</span>
                                         </div>
                                     </div>
                                 </div>
@@ -81,10 +81,10 @@
                                         <p>Exceptional support and top-notch expertise. Tether Elite has been a key player in our growth, offering insights that matter.</p>
                                     </div>
                                     <div class="testi-img">
-                                        <img src="{{asset('frontend/img/review/2.jpg')}}" alt="Reviewer 2">
+                                        {{-- <img src="{{asset('frontend/img/review/2.jpg')}}" alt="Reviewer 2"> --}}
                                         <div class="guest-details">
                                             <h4>Maria Lopez</h4>
-                                            <span class="guest-rev">Clients - <a href="#">Tech Entrepreneur</a></span>
+                                            <span class="guest-rev">Elite</span>
                                         </div>
                                     </div>
                                 </div>
@@ -105,10 +105,10 @@
                                         <p>Partnering with Tether Elite has been a game-changer. Their tailored solutions have significantly enhanced our operational efficiency.</p>
                                     </div>
                                     <div class="testi-img">
-                                        <img src="{{asset('frontend/img/review/3.jpg')}}" alt="Reviewer 3">
+                                        {{-- <img src="{{asset('frontend/img/review/3.jpg')}}" alt="Reviewer 3"> --}}
                                         <div class="guest-details">
                                             <h4>Chris Patel</h4>
-                                            <span class="guest-rev">Clients - <a href="#">Business Analyst</a></span>
+                                            <span class="guest-rev">Elite</span>
                                         </div>
                                     </div>
                                 </div>
@@ -129,10 +129,10 @@
                                         <p>Tether Elite offers unmatched service and expertise. They’ve helped us streamline processes and achieve our business goals effectively.</p>
                                     </div>
                                     <div class="testi-img">
-                                        <img src="{{asset('frontend/img/review/4.jpg')}}" alt="Reviewer 4">
+                                        {{-- <img src="{{asset('frontend/img/review/4.jpg')}}" alt="Reviewer 4"> --}}
                                         <div class="guest-details">
                                             <h4>Jordan Lee</h4>
-                                            <span class="guest-rev">Clients - <a href="#">Corporate Manager</a></span>
+                                            <span class="guest-rev">Elite</span>
                                         </div>
                                     </div>
                                 </div>
@@ -153,10 +153,10 @@
                                         <p>Their approach to problem-solving is impressive. Tether Elite’s support has been instrumental in overcoming challenges and driving success.</p>
                                     </div>
                                     <div class="testi-img">
-                                        <img src="{{asset('frontend/img/review/5.jpg')}}" alt="Reviewer 5">
+                                        {{-- <img src="{{asset('frontend/img/review/5.jpg')}}" alt="Reviewer 5"> --}}
                                         <div class="guest-details">
                                             <h4>Elena Smith</h4>
-                                            <span class="guest-rev">Clients - <a href="#">Non-Profit Director</a></span>
+                                            <span class="guest-rev">Elite </span>
                                         </div>
                                     </div>
                                 </div>
@@ -177,10 +177,10 @@
                                         <p>Tether Elite delivers results. Their expertise and dedication have been key to achieving our business milestones smoothly and efficiently.</p>
                                     </div>
                                     <div class="testi-img">
-                                        <img src="{{asset('frontend/img/review/6.jpg')}}" alt="Reviewer 6">
+                                        {{-- <img src="{{asset('frontend/img/review/6.jpg')}}" alt="Reviewer 6"> --}}
                                         <div class="guest-details">
                                             <h4>Michael Thompson</h4>
-                                            <span class="guest-rev">Clients - <a href="#">Marketing Specialist</a></span>
+                                            <span class="guest-rev">Elite</span>
                                         </div>
                                     </div>
                                 </div>

@@ -20,6 +20,50 @@
 
         <!-- Include CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <style>
+            .self-area {
+                padding: 60px 0; /* Adjust as needed */
+            }
+
+            .self-area .container {
+                max-width: 1170px; /* Adjust as needed */
+                margin: 0 auto;
+            }
+
+            .self-area .row {
+                display: flex;
+                align-items: center;
+            }
+
+            .self-area .col-md-6,
+            .self-area .col-sm-6,
+            .self-area .col-xs-12 {
+                position: relative;
+                width: 50%;
+                padding: 0 15px;
+                box-sizing: border-box;
+            }
+
+            .self-area .col-md-6:first-child {
+                background-image: url('img/background/ag1.jpg'); /* Adjust the path to your image */
+                background-size: cover;
+                background-position: center;
+                height: 100%;
+                min-height: 400px; /* Adjust as needed */
+            }
+
+            .self-area .col-md-6:last-child {
+                display: none;
+            }
+
+            .investment-title {
+                font-weight: bold;
+                color: #E6922E; /* Change this color as needed */
+                font-size: 1.2em; /* Adjust the size as needed */
+                margin-bottom: 10px; /* Optional: Add some space below the title */
+            }
+        </style>
     </head>
 	<body>
         <div id="preloader"></div>
@@ -149,6 +193,7 @@
                                         <span class="per-day">{{ $investment->per_day }} Days</span>
                                     </div>
                                     <ol class="pricing-text">
+                                        <li class="check investment-title">{{ $investment->title }}</li>
                                         <li class="check">Minimum Investment: ${{ $investment->min_invest }}</li>
                                         <li class="check">Maximum Investment: ${{ $investment->max_invest }}</li>
                                         <li class="check">Average Monthly: {{ $investment->average_month }}%</li>
@@ -172,7 +217,8 @@
                                         <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
                                     </div>
                                     <div class="modal-body">
-                                          <p class="modal-text">Please sign up and verify your account via the email we send. Once verified, choose an investment plan and make your payment to the provided USDT (TRC-20) address. Then, email a screenshot of your transaction receipt to <a href="mailto:info@tetherelitefinance.com">info@tetherelitefinance.com</a> for swift approval.
+                                          <p class="modal-text">
+                                            Please sign up and verify your account via the email we send. Once verified, choose an investment plan and make your payment to the provided USDT (TRC-20) address. Then, email a screenshot of your transaction receipt to <a href="mailto:info@tetherelitefinance.com">info@tetherelitefinance.com</a> for swift approval.
                                           </p>
                                     </div>
                                     <div class="modal-footer md-button">
@@ -274,10 +320,7 @@
                         <!-- Add an image or any other content if needed -->
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="self-content">
-                            <h4>TetherELiteFinance is a leading multi-national investment firm specializing in advanced financial strategies and innovative trading solutions. Our mission is to help you grow your wealth rapidly and securely, leveraging the expertise of our financial specialists. We provide profitable investment opportunities with minimized risk, paving the way for a brighter financial future.</h4>
-                            <span class="talk-text">Cruise Tether, CEO</span>
-                        </div>
+
                     </div>
                     <!-- column end -->
                 </div>
@@ -286,68 +329,7 @@
 
         <!-- End Self-area -->
         <!-- Start Work proses Area -->
-        {{-- <div class="work-proses fix bg-color area-padding-2">
-			<div class="container">
-			    <div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="section-headline text-center">
-                            <h3>Referral bonus level</h3>
-                            <p>Help agencies to define their new business objectives and then create professional software.</p>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="row">
-							<div class="work-proses-inner text-center">
-							    <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <div class="single-proses">
-                                        <div class="proses-content">
-                                            <div class="proses-icon point-blue">
-                                                <span class="point-view">01</span>
-                                                <a href="#"><i class="ti-briefcase"></i></a>
-                                            </div>
-                                            <div class="proses-text">
-                                                <h4>Level 01 instant 30% commission</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End column -->
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <div class="single-proses">
-                                        <div class="proses-content">
-                                            <div class="proses-icon point-orange">
-                                               <span class="point-view">02</span>
-                                                <a href="#"><i class="ti-layers"></i></a>
-                                            </div>
-                                            <div class="proses-text">
-                                                <h4>Level 02 instant 20% commission</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End column -->
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <div class="single-proses last-item">
-                                        <div class="proses-content">
-                                            <div class="proses-icon point-green">
-                                               <span class="point-view">03</span>
-                                                <a href="#"><i class="ti-bar-chart-alt"></i></a>
-                                            </div>
-                                            <div class="proses-text">
-                                                <h4>Level 03 instant 10% commission</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End column -->
-							</div>
-						</div>
-                    </div>
-				</div>
-			</div>
-		</div> --}}
+
         <!-- End Work proses Area -->
         <!--Start payment-history area -->
         <div class="payment-history-area bg-color fix area-padding-2">
@@ -397,6 +379,56 @@
                                             <th>Amount</th>
                                             <th>Currency</th>
                                         </tr>
+                                        <tr>
+                                            <td>Arnold</td>
+                                            <td>May 10, 2024</td>
+                                            <td>$10,000.76</td>
+                                            <td>Bitcoin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jhon Abra</td>
+                                            <td>Apr 07, 2024</td>
+                                            <td>$62,000.21</td>
+                                            <td>USD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lanisha</td>
+                                            <td>May 08, 2024</td>
+                                            <td>$25,000.36</td>
+                                            <td>Bitcoin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gongales</td>
+                                            <td>Jan 12, 2024</td>
+                                            <td>$31,000.90</td>
+                                            <td>USD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Admond sayhel</td>
+                                            <td>Jan 10, 2020</td>
+                                            <td>$11,000.80</td>
+                                            <td>Bitcoin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Remond</td>
+                                            <td>July 15, 2024</td>
+                                            <td>$54,000.50</td>
+                                            <td>USD</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            {{-- <div class="diposite-box">
+                                <h4>Last withdrawals</h4>
+                                <span><i class="flaticon-042-wallet"></i></span>
+                                <div class="deposite-table">
+                                    <table>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Currency</th>
+                                        </tr>
                                         @foreach($withdrawals as $withdrawal)
                                         <tr>
                                             <td>{{ $withdrawal->name }}</td>
@@ -408,7 +440,7 @@
                                     </table>
                                     {{ $deposits->links() }}
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -423,7 +455,7 @@
                         <div class="banner-all area-80 text-center">
                             <div class="banner-content">
                                 <h3>Our investment plan world wide business relations for development</h3>
-                                <a class="banner-btn" href="#">Sign up now</a>
+                                <a class="banner-btn" href="{{ route('register') }}">Sign up now</a>
                             </div>
                         </div>
                     </div>
@@ -462,10 +494,9 @@
                                                 <p>"TetherELiteFinance has revolutionized my investment strategy. Their cutting-edge trading bots and strategic approach have consistently delivered remarkable returns. I am impressed by their professionalism and transparency."</p>
                                             </div>
                                             <div class="testi-img">
-                                                <img src="{{asset('frontend/img/review/1.jpg')}}" alt="Client Review">
                                                 <div class="guest-details">
                                                     <h4>James Carter</h4>
-                                                    <span class="guest-rev">Elite Investor - <a href="#">Long-term Client</a></span>
+                                                    <span class="guest-rev">Elite</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -484,10 +515,9 @@
                                                 <p>"The 25% biweekly ROI offered by TetherELiteFinance is unparalleled. Their innovative strategies and real-time market insights have provided me with substantial returns. I highly recommend their services."</p>
                                             </div>
                                             <div class="testi-img">
-                                                <img src="{{asset('frontend/img/review/2.jpg')}}" alt="Client Review">
                                                 <div class="guest-details">
                                                     <h4>Linda Foster</h4>
-                                                    <span class="guest-rev">Investor - <a href="#">Satisfied Client</a></span>
+                                                    <span class="guest-rev">Elite</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -506,10 +536,9 @@
                                                 <p>"TetherELiteFinance's use of Tether tokens and advanced trading techniques has provided me with a secure and profitable investment experience. Their team is knowledgeable and committed to delivering results."</p>
                                             </div>
                                             <div class="testi-img">
-                                                <img src="{{asset('frontend/img/review/3.jpg')}}" alt="Client Review">
                                                 <div class="guest-details">
                                                     <h4>Michael Lee</h4>
-                                                    <span class="guest-rev">Elite Investor - <a href="#">Long-term Client</a></span>
+                                                    <span class="guest-rev">Elite</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -528,10 +557,9 @@
                                                 <p>"I've been thoroughly impressed with TetherELiteFinance's innovative trading strategies and consistent returns. Their use of Tether's stable tokens has ensured a high level of security and profitability."</p>
                                             </div>
                                             <div class="testi-img">
-                                                <img src="{{asset('frontend/img/review/4.jpg')}}" alt="Client Review">
                                                 <div class="guest-details">
                                                     <h4>Emily White</h4>
-                                                    <span class="guest-rev">Investor - <a href="#">Satisfied Client</a></span>
+                                                    <span class="guest-rev">Elite</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -594,7 +622,7 @@
                                             <div id="check2" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                     <p>
-                                                        Our platform guarantees a remarkable 25% ROI paid biweekly by employing sophisticated trading strategies and leveraging real-time market insights. We engage in various profit streams, including arbitrage trading and funding ICOs, to optimize investor returns.
+                                                        Our platform guarantees a remarkable ROI paid biweekly by employing sophisticated trading strategies and leveraging real-time market insights. We engage in various profit streams, including arbitrage trading and funding ICOs, to optimize investor returns.
                                                     </p>
                                                 </div>
                                             </div>
@@ -672,7 +700,7 @@
                                                 {{ session('status') }}
                                             </div>
                                         @endif
-                                        <form method="POST" action="{{ route('faq.store') }}" class="contact-form">
+                                        <form method="POST" action="{{ route('faq.home') }}" class="contact-form">
                                             @csrf
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Withdrawal;
 use App\Models\Transaction;
 use App\Models\User;
@@ -27,15 +28,11 @@ class WithdrawalController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
 
-        // $request->validate([
-        //     'amount' => 'required|numeric|min:0',
-        //     'wallet_address' => 'required|string',
-        // ]);
-
-        // Simulate processing time (5 seconds)
-        // sleep(2);
+        $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'wallet_address' => 'required|string',
+        ]);
 
         $user = auth()->user();
         $balance = $user->subscription->transactions->sum('profit_per_month') ?? 0;
@@ -46,6 +43,7 @@ class WithdrawalController extends Controller
 
         $withdrawal = Withdrawal::create([
             'user_id'=> $user->id,
+            'plan_id' => $user->subscription->plan_id,
             'name' => $user->name,
             'amount' => $request->amount,
             'wallet_address' => $request->wallet_address,
@@ -64,7 +62,7 @@ class WithdrawalController extends Controller
         ]);
 
         // Send email to user
-        // Mail::to($user->email)->send(new \App\Mail\WithdrawalRequest($withdrawal));
+        Mail::to($user->email)->send(new \App\Mail\WithdrawalRequest($withdrawal));
 
         // return redirect()->route('user.withdrawal')->with('success', 'Withdrawal request submitted successfully.');
 

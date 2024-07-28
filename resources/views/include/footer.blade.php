@@ -9,12 +9,12 @@
                                 <a class="footer-black-logo" href="#"><img src="{{asset('frontend/img/logo/logo.png')}}" alt=""></a>
                             </div>
                             <p>Looking for expert financial guidance and high-yield investment opportunities? At TetherEliteFinance, we offer advanced trading strategies and personalized support to help you achieve your financial goals with confidence.</p>
-                            <div class="subs-feilds">
+                            {{-- <div class="subs-feilds">
                                 <div class="suscribe-input">
                                     <input type="email" class="email form-control width-80" id="sus_email" placeholder="Type Email">
                                     <button type="submit" id="sus_submit" class="add-btn">Subscribe</button>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -45,30 +45,11 @@
                             <div class="footer-icons">
                                 <ul>
                                     <li>
-                                        <a href="#">
-                                            <i class="fa fa-facebook"></i>
+                                        <a href="https://wa.me/+12364992617" target="_blank">
+                                            <i class="fa fa-whatsapp"></i>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-google"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-pinterest"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>
