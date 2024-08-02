@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
+        'investment_id',
     ];
 
     /**
@@ -38,6 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
+        return $this->hasMany(Investment::class);
     }
 
     public function subscription()
@@ -53,6 +55,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function withdrawals()
     {
         return $this->hasMany(Withdrawal::class);
+    }
+
+    public function investments()
+    {
+        return $this->hasManyThrough(Investment::class, Subscription::class);
+    }
+
+    public function investment()
+    {
+        return $this->belongsTo(Investment::class);
     }
 
     /**

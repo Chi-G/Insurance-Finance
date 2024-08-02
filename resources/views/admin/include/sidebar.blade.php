@@ -40,6 +40,9 @@
                     <li>
                         <a href="{{route('faqcontact.index')}}"> User Faq Contact </a>
                     </li>
+                    <li>
+                        <a href="{{route('sub_management.index')}}"> User Sub Management </a>
+                    </li>
                 </ul>
             </li>
 

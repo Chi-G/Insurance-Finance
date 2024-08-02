@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\AdminSubscriptionController;
+use App\Http\Controllers\Admin\SubManagementController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
@@ -100,6 +101,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('admin_withdrawals', \App\Http\Controllers\Admin\AdminWithdrawalController::class);
         Route::resource('faqcontact', \App\Http\Controllers\Admin\FaqContactController::class)->only(['index', 'destroy']);
 
+        Route::get('sub_management/{user_id}/edit/{investment_id}', [SubManagementController::class, 'edit'])->name('sub_management.edit');
+        Route::put('sub_management/{user_id}/{investment_id}', [SubManagementController::class, 'update'])->name('sub_management.update');
+        Route::delete('sub_management/{user_id}/{investment_id}', [SubManagementController::class, 'destroy'])->name('sub_management.destroy');
+        Route::get('sub_management', [SubManagementController::class, 'index'])->name('sub_management.index');
+
         Route::get('/subscriptions', [\App\Http\Controllers\Admin\AdminSubscriptionController::class, 'index'])->name('admin.subscriptions');
         Route::get('/subscriptions/{subscription}/edit', [\App\Http\Controllers\Admin\AdminSubscriptionController::class, 'edit'])->name('admin.subscriptions.edit');
         Route::patch('/subscriptions/{subscription}', [\App\Http\Controllers\Admin\AdminSubscriptionController::class, 'update'])->name('admin.subscriptions.update');
@@ -107,7 +113,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-// Display the email verification notice to the user.
+// Display the email verification notice to the usecls
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');

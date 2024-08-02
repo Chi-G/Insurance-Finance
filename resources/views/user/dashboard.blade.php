@@ -80,7 +80,8 @@
                             <div class="widget-content">
                                 <div class="invoice-box">
                                     <div class="acc-total-info">
-                                        <h5>Balance</h5>
+                                        {{-- <h5>Balance</h5> --}}
+                                        <h5>Equity</h5>
                                         @php
                                             $balance = $user->subscription->transactions->sum('profit_per_month') ?? 0;
                                         @endphp
@@ -114,19 +115,23 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Min Investment</td>
+                                                            {{-- <td>Min Investment</td> --}}
+                                                            <td>Investment Capital </td>
                                                             <td>${{ number_format($user->subscription->plan->min_investment, 2) }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Max Investment</td>
+                                                            {{-- <td>Max Investment</td> --}}
+                                                            <td>ROI </td>
                                                             <td>${{ number_format($user->subscription->plan->max_investment, 2) }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Average Monthly Profit</td>
+                                                            {{-- <td>Average Monthly Profit</td> --}}
+                                                            <td> Referral Profit </td>
                                                             <td>${{ number_format($user->subscription->plan->average_monthly, 2) }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Daily Profit</td>
+                                                            {{-- <td>Daily Profit</td> --}}
+                                                            <td>Weekly Profit </td>
                                                             <td>{{ $user->subscription->plan->daily_profit }}%</td>
                                                         </tr>
                                                     </tbody>
