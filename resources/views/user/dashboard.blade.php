@@ -83,14 +83,23 @@
                                         {{-- <h5>Balance</h5> --}}
                                         <h5>Equity</h5>
                                         @php
+                                            // Calculate the balance from transactions
                                             $balance = $user->subscription->transactions->sum('profit_per_month') ?? 0;
+
+                                            if ($user->subscription) {
+                                                // Calculate additional values
+                                                $investmentCapital = $user->subscription->plan->min_investment ?? 0;
+                                                $roi = $user->subscription->plan->max_investment ?? 0;
+                                                $referralProfit = $user->subscription->plan->average_monthly ?? 0;
+                                                $weeklyProfit = $user->subscription->plan->daily_profit ?? 0;
+
+                                                // Sum up all values
+                                                $totalBalance = $balance + $investmentCapital + $roi + $referralProfit + $weeklyProfit;
+                                            } else {
+                                                $totalBalance = $balance;
+                                            }
                                         @endphp
-                                            <p class="acc-amount">${{ number_format($balance, 2) }}</p>
-                                        {{-- @if ($user->subscription && $user->subscription->transactions->isNotEmpty())
-                                            <p class="acc-amount"> ${{ number_format($user->subscription->transactions->first()->profit_per_month ?? 0, 2) }} </p>
-                                        @else
-                                            <p class="acc-amount">N/A</p>
-                                        @endif --}}
+                                        <p class="acc-amount">${{ number_format($totalBalance, 2) }}</p>
                                     </div>
 
                                     <hr>

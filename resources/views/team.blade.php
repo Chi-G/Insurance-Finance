@@ -31,7 +31,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="breadcrumb text-center">
                             <div class="section-headline white-headline">
-                                <h3>Exper team </h3>
+                                <h3>Expert team </h3>
                             </div>
                             <ul class="breadcrumb-bg">
                                 <li class="home-bread">Home</li>
@@ -67,11 +67,7 @@
                                 <div class="team-content">
                                     <h5><a href="#">Hamilton</a></h5>
                                     <p>Software developer</p>
-                                    <ul class="team-hover">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -86,11 +82,7 @@
                                 <div class="team-content">
                                     <h5><a href="#">Timeo poll</a></h5>
                                     <p>Syber security</p>
-                                    <ul class="team-hover">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -105,11 +97,7 @@
                                 <div class="team-content">
                                     <h5><a href="#">Angle Lilou</a></h5>
                                     <p>Server expert</p>
-                                    <ul class="team-hover">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -124,11 +112,7 @@
                                 <div class="team-content">
                                     <h5><a href="#">Louise</a></h5>
                                     <p>Software developer</p>
-                                    <ul class="team-hover">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -143,11 +127,7 @@
                                 <div class="team-content">
                                     <h5><a href="#">Gabriel hank</a></h5>
                                     <p>web developer</p>
-                                    <ul class="team-hover">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -162,11 +142,7 @@
                                 <div class="team-content">
                                     <h5><a href="#">Arnold loil</a></h5>
                                     <p>Software developer</p>
-                                    <ul class="team-hover">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -181,11 +157,7 @@
                                 <div class="team-content">
                                     <h5><a href="#">Lania Inès</a></h5>
                                     <p>Syber security</p>
-                                    <ul class="team-hover">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -200,11 +172,7 @@
                                 <div class="team-content">
                                     <h5><a href="#">Arthur doil</a></h5>
                                     <p>Web developer</p>
-                                    <ul class="team-hover">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>

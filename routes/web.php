@@ -19,6 +19,7 @@ use App\Models\Withdrawal;
 use App\Models\Investment;
 use App\Models\Subscription;
 use App\Models\Transaction;
+use App\Models\Review;
 
 // Authentication and Email Verification Route
 Auth::routes(['verify' => true]);
@@ -36,7 +37,12 @@ Route::view('/about', 'about');
 Route::view('/blogs', 'blog');
 // Route::view('/contact', 'contact');
 Route::view('/team', 'team');
-Route::view('/reviews', 'review');
+
+Route::get('/reviews', function () {
+    $reviews = Review::all();
+    return view('review', compact('reviews'));
+});
+
 Route::get('/investment', function () {
     $deposits = \App\Models\Deposit::latest()->paginate(6);
     $withdrawals = \App\Models\Withdrawal::latest()->paginate(6);

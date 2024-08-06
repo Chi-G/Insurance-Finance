@@ -73,7 +73,7 @@
                                     <!-- Modal Button-->
                                     <div class="price-btn blue">
                                         <button style="background: #E6922E" type="button" class="btn btn-danger mb-2 mr-2" data-toggle="modal" data-target="#zoomupModal">
-                                            Deposite
+                                            Deposit
                                         </button>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                <div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="section-headline text-center">
-                            <h3>Deposite and withdrawals history</h3>
+                            <h3>Deposit and withdrawals history</h3>
                             <p>Help agencies to define their new business objectives and then create professional software.</p>
 						</div>
 					</div>
@@ -122,7 +122,7 @@
                     <div class="col-md-12">
                         <div class="deposite-content">
                             <div class="diposite-box">
-                                <h4>Last deposite</h4>
+                                <h4>Last deposit</h4>
                                 <span><i class="flaticon-005-savings"></i></span>
                                 <div class="deposite-table">
                                     <table>
@@ -132,14 +132,14 @@
                                             <th>Amount</th>
                                             <th>Currency</th>
                                         </tr>
-                                        @foreach($withdrawals as $withdrawal)
-                                        <tr>
-                                            <td>{{ $withdrawal->name }}</td>
-                                            <td>{{ $withdrawal->date->format('M d, Y') }}</td>
-                                            <td>${{ number_format($withdrawal->amount, 2) }}</td>
-                                            <td>{{ $withdrawal->currency }}</td>
-                                        </tr>
-                                    @endforeach
+                                        @foreach($deposits as $deposit)
+                                            <tr>
+                                                <td>{{ $deposit->name }}</td>
+                                                <td>{{ $deposit->date->format('M d, Y') }}</td>
+                                                <td>${{ number_format($deposit->amount, 2) }}</td>
+                                                <td>{{ $deposit->currency }}</td>
+                                            </tr>
+                                            @endforeach
                                     </table>
                                     {{ $deposits->links() }}
                                 </div>
@@ -155,14 +155,42 @@
                                             <th>Amount</th>
                                             <th>Currency</th>
                                         </tr>
-                                        @foreach($withdrawals as $withdrawal)
                                         <tr>
-                                            <td>{{ $withdrawal->name }}</td>
-                                            <td>{{ $withdrawal->date->format('M d, Y') }}</td>
-                                            <td>${{ number_format($withdrawal->amount, 2) }}</td>
-                                            <td>{{ $withdrawal->currency }}</td>
+                                            <td>Arnold</td>
+                                            <td>May 10, 2024</td>
+                                            <td>$10,000.76</td>
+                                            <td>Bitcoin</td>
                                         </tr>
-                                    @endforeach
+                                        <tr>
+                                            <td>Jhon Abra</td>
+                                            <td>Apr 07, 2024</td>
+                                            <td>$62,000.21</td>
+                                            <td>USD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lanisha</td>
+                                            <td>May 08, 2024</td>
+                                            <td>$25,000.36</td>
+                                            <td>Bitcoin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gongales</td>
+                                            <td>Jan 12, 2024</td>
+                                            <td>$31,000.90</td>
+                                            <td>USD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Admond sayhel</td>
+                                            <td>Jan 10, 2020</td>
+                                            <td>$11,000.80</td>
+                                            <td>Bitcoin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Remond</td>
+                                            <td>July 15, 2024</td>
+                                            <td>$54,000.50</td>
+                                            <td>USD</td>
+                                        </tr>
                                     </table>
                                     {{ $deposits->links() }}
                                 </div>

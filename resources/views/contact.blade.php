@@ -51,7 +51,7 @@
                                     <i class="fa fa-mobile"></i>
                                     <p>
                                         Call : +1 236-499-2617</43<br>
-                                        <span>Monday-Friday (10am-8pm)</span>
+                                        {{-- <span>Monday-Friday (10am-8pm)</span> --}}
                                     </p>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                     <i class="fa fa-envelope-o"></i>
                                     <p>
                                         Email : info@tetherelitefinance.com<br>
-                                        <span>24 hours timely responds</span>
+                                        {{-- <span>24 hours timely responds</span> --}}
                                     </p>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                      <div class="col-md-6 col-sm-6 col-xs-12">
                          <!-- Start Map -->
                         <div class="map-area">
-                            <div id="googleMap" style="width:100%;height:380px;"></div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59824202.87471126!2d162.00564994068557!3d23.76949431311844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537a66c7aa6b6aaf%3A0x881b41e937e7f1f9!2sBritish%20Columbia%2C%20Canada!5e0!3m2!1sen!2sng!4v1722895335854!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                         <!-- End Map -->
                     </div>

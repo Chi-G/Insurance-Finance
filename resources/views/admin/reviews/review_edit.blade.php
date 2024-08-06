@@ -64,14 +64,14 @@
                                         <label for="description">Description</label>
                                         <textarea class="form-control" id="description" name="description" required>{{ isset($review) ? $review->description : old('description') }}</textarea>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="image">Image:</label>
                                         <input type="file" class="form-control" id="image" name="image">
                                         <hr>
                                         @if($review->image)
                                             <img src="{{ asset('storage/' . $review->image) }}" alt="{{ $review->title }}" width="100">
                                         @endif
-                                    </div>
+                                    </div> --}}
                                     <button type="submit" class="btn btn-primary">{{ isset($review) ? 'Update' : 'Save' }}</button>
                                 </form>
                             </div>

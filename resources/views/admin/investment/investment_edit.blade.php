@@ -48,10 +48,10 @@
                                         <label for="title">Title</label>
                                         <input type="text" class="form-control" id="title" name="title" value="{{ $investment->title }}" required>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="description">Description</label>
                                         <textarea class="form-control" id="description" name="description" rows="3" required>{{ $investment->description }}</textarea>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="daily_percent">Daily %</label>
                                         <input type="number" step="0.01" class="form-control" id="daily_percent" name="daily_percent" value="{{ $investment->daily_percent }}" required>

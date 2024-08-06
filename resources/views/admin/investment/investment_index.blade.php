@@ -45,7 +45,7 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Description</th>
+                                            {{-- <th>Description</th> --}}
                                             <th>daily_percent%</th>
                                             <th>Per_day</th>
                                             <th>Min_invest</th>
@@ -59,7 +59,7 @@
                                         @foreach($investments as $invest)
                                         <tr>
                                             <td>{{ $invest->title }}</td>
-                                            <td>{{ $invest->description }}</td>
+                                            {{-- <td>{{ $invest->description }}</td> --}}
                                             <td>{{ $invest->daily_percent }}</td>
                                             <td>{{ $invest->per_day }}</td>
                                             <td>{{ $invest->min_invest }}</td>

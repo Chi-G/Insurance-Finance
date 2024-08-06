@@ -43,149 +43,33 @@
             <div class="container">
                 <div class="row">
                     <div class="reviews-content">
+                        @foreach($reviews as $review)
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="single-testi">
                                 <div class="testi-text">
                                     <div class="clients-text">
                                         <div class="client-rating">
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <a href="#"><i class="ti-star"></i></a>
+                                            @endfor
                                         </div>
-                                        <p>Tether Elite’s exceptional service has transformed my business. They offer reliable and innovative solutions tailored to my needs.</p>
+                                        <p>{{ $review->description }}</p>
                                     </div>
                                     <div class="testi-img">
-                                        {{-- <img src="{{asset('frontend/img/review/1.jpg')}}" alt="Reviewer 1"> --}}
+                                        {{-- @if($review->image)
+                                            <img src="{{ asset('storage/' . $review->image) }}" alt="{{ $review->name }}">
+                                        @endif --}}
                                         <div class="guest-details">
-                                            <h4>Alex Johnson</h4>
-                                            <span class="guest-rev">Elite</span>
+                                            <h4>{{ $review->name }}</h4>
+                                            <span class="guest-rev">{{ $review->position }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                         <!-- End single item -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-testi">
-                                <div class="testi-text">
-                                    <div class="clients-text">
-                                        <div class="client-rating">
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                        </div>
-                                        <p>Exceptional support and top-notch expertise. Tether Elite has been a key player in our growth, offering insights that matter.</p>
-                                    </div>
-                                    <div class="testi-img">
-                                        {{-- <img src="{{asset('frontend/img/review/2.jpg')}}" alt="Reviewer 2"> --}}
-                                        <div class="guest-details">
-                                            <h4>Maria Lopez</h4>
-                                            <span class="guest-rev">Elite</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End single item -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-testi">
-                                <div class="testi-text">
-                                    <div class="clients-text">
-                                        <div class="client-rating">
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                        </div>
-                                        <p>Partnering with Tether Elite has been a game-changer. Their tailored solutions have significantly enhanced our operational efficiency.</p>
-                                    </div>
-                                    <div class="testi-img">
-                                        {{-- <img src="{{asset('frontend/img/review/3.jpg')}}" alt="Reviewer 3"> --}}
-                                        <div class="guest-details">
-                                            <h4>Chris Patel</h4>
-                                            <span class="guest-rev">Elite</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End single item -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-testi">
-                                <div class="testi-text">
-                                    <div class="clients-text">
-                                        <div class="client-rating">
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                        </div>
-                                        <p>Tether Elite offers unmatched service and expertise. They’ve helped us streamline processes and achieve our business goals effectively.</p>
-                                    </div>
-                                    <div class="testi-img">
-                                        {{-- <img src="{{asset('frontend/img/review/4.jpg')}}" alt="Reviewer 4"> --}}
-                                        <div class="guest-details">
-                                            <h4>Jordan Lee</h4>
-                                            <span class="guest-rev">Elite</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End single item -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-testi">
-                                <div class="testi-text">
-                                    <div class="clients-text">
-                                        <div class="client-rating">
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                        </div>
-                                        <p>Their approach to problem-solving is impressive. Tether Elite’s support has been instrumental in overcoming challenges and driving success.</p>
-                                    </div>
-                                    <div class="testi-img">
-                                        {{-- <img src="{{asset('frontend/img/review/5.jpg')}}" alt="Reviewer 5"> --}}
-                                        <div class="guest-details">
-                                            <h4>Elena Smith</h4>
-                                            <span class="guest-rev">Elite </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End single item -->
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="single-testi">
-                                <div class="testi-text">
-                                    <div class="clients-text">
-                                        <div class="client-rating">
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                            <a href="#"><i class="ti-star"></i></a>
-                                        </div>
-                                        <p>Tether Elite delivers results. Their expertise and dedication have been key to achieving our business milestones smoothly and efficiently.</p>
-                                    </div>
-                                    <div class="testi-img">
-                                        {{-- <img src="{{asset('frontend/img/review/6.jpg')}}" alt="Reviewer 6"> --}}
-                                        <div class="guest-details">
-                                            <h4>Michael Thompson</h4>
-                                            <span class="guest-rev">Elite</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <!-- End single item -->
                     </div>
 

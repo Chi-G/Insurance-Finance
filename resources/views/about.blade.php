@@ -166,7 +166,7 @@
                                 <li><a href="#">Participation in ICOs and Token Presales</a></li>
                                 <li><a href="#">Returns from Third-Party Loans</a></li>
                             </ul>
-                            <a class="feature-btn" href="#">Learn about more</a>
+                            {{-- <a class="feature-btn" href="#">Learn about more</a> --}}
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">

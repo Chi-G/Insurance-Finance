@@ -87,7 +87,6 @@
                                             <div class="slide-content text-center">
                                                 <h2 class="title2"></h2>
                                                 <div class="layer-1-3">
-                                                    {{-- <a href="{{route('register')}}" class="ready-btn left-btn" >Get started</a> --}}
                                                 </div>
                                             </div>
                                             <!-- End Slider content -->
@@ -416,31 +415,10 @@
                                             <td>USD</td>
                                         </tr>
                                     </table>
-                                </div>
-                            </div>
-                            {{-- <div class="diposite-box">
-                                <h4>Last withdrawals</h4>
-                                <span><i class="flaticon-042-wallet"></i></span>
-                                <div class="deposite-table">
-                                    <table>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Date</th>
-                                            <th>Amount</th>
-                                            <th>Currency</th>
-                                        </tr>
-                                        @foreach($withdrawals as $withdrawal)
-                                        <tr>
-                                            <td>{{ $withdrawal->name }}</td>
-                                            <td>{{ $withdrawal->date->format('M d, Y') }}</td>
-                                            <td>${{ number_format($withdrawal->amount, 2) }}</td>
-                                            <td>{{ $withdrawal->currency }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </table>
                                     {{ $deposits->links() }}
                                 </div>
-                            </div> --}}
+                            </div>
+
                         </div>
                     </div>
                 </div>
